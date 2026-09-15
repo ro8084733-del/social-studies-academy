@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>نتائج الطلاب</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eaf7ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #2196F3;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f5fbff;
+        }
+
+        .excellent {
+            color: green;
+            font-weight: bold;
+        }
+
+        .good {
+            color: #2196F3;
+            font-weight: bold;
+        }
+
+        .needs-help {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .stars {
+            font-size: 20px;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .back {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .back button {
+            background: #555;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📊 نتائج وتقييمات الطلاب</h1>
+
+    <p>لوحة المعلم</p>
+
+</header>
+
+
+<div class="container">
+
+    <!-- نتائج الاختبارات -->
+
+    <div class="box">
+
+        <h2>📝 نتائج الاختبارات</h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>الطالب</th>
+                        <th>الاختبار</th>
+                        <th>الدرجة</th>
+                        <th>التقييم</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>محمد أحمد</td>
+
+                        <td>اختبار الوحدة الأولى</td>
+
+                        <td>9 / 10</td>
+
+                        <td class="excellent">ممتاز ⭐</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>سارة علي</td>
+
+                        <td>اختبار الوحدة الأولى</td>
+
+                        <td>8 / 10</td>
+
+                        <td class="good">جيد جدًا 👍</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>أحمد محمود</td>
+
+                        <td>اختبار الوحدة الأولى</td>
+
+                        <td>5 / 10</td>
+
+                        <td class="needs-help">يحتاج مراجعة 📚</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- تقييمات الطلاب -->
+
+    <div class="box">
+
+        <h2>⭐ تقييم الطلاب للحصص</h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>الطالب</th>
+                        <th>التقييم</th>
+                        <th>ملاحظات الطالب</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>محمد أحمد</td>
+
+                        <td class="stars">⭐⭐⭐⭐⭐</td>
+
+                        <td>الشرح كان جميلًا وسهلًا</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>سارة علي</td>
+
+                        <td class="stars">⭐⭐⭐⭐</td>
+
+                        <td>الحصة مفيدة جدًا</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>أحمد محمود</td>
+
+                        <td class="stars">⭐⭐⭐</td>
+
+                        <td>أحتاج شرحًا أكثر</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <div class="back">
+
+        <button onclick="window.location.href='admin.html'">
+
+            ↩️ العودة للوحة المعلم
+
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>أكاديمية الدراسات الاجتماعية</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eaf7ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        nav {
+            background: white;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 5px;
+            padding: 9px 14px;
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #eaf7ff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .welcome {
+            background: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 45px;
+        }
+
+        .card h3 {
+            color: #2196F3;
+        }
+
+        .card a {
+            display: inline-block;
+            background: #2196F3;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        .card a:hover {
+            background: #1976D2;
+        }
+
+        footer {
+            margin-top: 30px;
+            background: #2196F3;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <h1>🎓 reham saleh academy  </h1>
+
+    <p>تعلم بطريقة سهلة وممتعة 🌟</p>
+
+</header>
+
+
+<nav>
+
+    <a href="index.html">🏠 الرئيسية</a>
+
+    <a href="lessons.html">📚 الدروس</a>
+
+    <a href="questions.html">📝 الاختبارات</a>
+
+    <a href="login.html">🔐 دخول الطالب</a>
+
+    <a href="newstudent.html">📝 تسجيل طالب</a>
+
+</nav>
+
+
+<div class="container">
+
+
+    <div class="welcome">
+
+        <h2>👋 أهلاً بكم في الأكاديمية</h2>
+
+        <p>
+            هنا هتتعلم الدراسات الاجتماعية بطريقة بسيطة
+            وممتعة ومناسبة للأطفال.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <!-- الدروس -->
+
+        <div class="card">
+
+            <div class="icon">📚</div>
+
+            <h3>الدروس</h3>
+
+            <p>
+                شاهد الدروس والوحدات التعليمية.
+            </p>
+
+            <a href="lessons.html">
+                فتح الدروس
+            </a>
+
+        </div>
+
+
+        <!-- الاختبارات -->
+
+        <div class="card">
+
+            <div class="icon">📝</div>
+
+            <h3>الاختبارات</h3>
+
+            <p>
+                اختبر معلوماتك واحصل على نتيجتك.
+            </p>
+
+            <a href="questions.html">
+                ابدأ الاختبار
+            </a>
+
+        </div>
+
+
+        <!-- الطالب -->
+
+        <div class="card">
+
+            <div class="icon">👨‍🎓</div>
+
+            <h3>لوحة الطالب</h3>
+
+            <p>
+                تابع دروسك وحضورك واشتراكك.
+            </p>
+
+            <a href="login.html">
+                دخول الطالب
+            </a>
+
+        </div>
+
+
+        <!-- تسجيل -->
+
+        <div class="card">
+
+            <div class="icon">📝</div>
+
+            <h3>طالب جديد؟</h3>
+
+            <p>
+                أنشئ حسابك وابدأ التعلم.
+            </p>
+           <a href="newstudent.html">
+                إنشاء حساب
+            </a>
+
+        </div>
+
+
+        <!-- المعلم -->
+
+        <div class="card">
+
+            <div class="icon">👩‍🏫</div>
+
+            <h3>لوحة المعلم</h3>
+
+            <p>
+                إدارة الطلاب والدروس والاختبارات.
+            </p>
+
+            <a href="admin.html">
+                دخول لوحة المعلم
+            </a>
+
+        </div>
+
+
+        <!-- التواصل -->
+
+        <div class="card">
+
+            <div class="icon">📩</div>
+
+            <h3>تواصل معنا</h3>
+
+            <p>
+                إذا كان لديك سؤال تواصل معنا.
+            </p>
+
+            <a href="connect.html">
+                التواصل
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>🎓 reham saleh academy</p>
+
+    <p>نتعلم اليوم لننجح غدًا 🌟</p>
+
+</footer>
+
+
+</body>
+
+</html>

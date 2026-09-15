@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>لوحة الطالب</title>
+
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eaf7ff;
+        }
+
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+
+        .container {
+            max-width: 900px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+
+        .welcome {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+
+        .welcome h2 {
+            color: #2196F3;
+        }
+
+
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+
+        .student-info h2 {
+            text-align: center;
+            color: #2196F3;
+        }
+
+
+        .info-row {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 15px;
+        }
+
+
+        .info-box {
+            background: #eaf7ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+
+        .info-box strong {
+            display: block;
+            color: #2196F3;
+            margin-bottom: 7px;
+        }
+
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 15px;
+        }
+
+
+        .card {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+
+        .card .icon {
+            font-size: 40px;
+        }
+
+
+        .card h3 {
+            margin: 10px 0;
+            color: #2196F3;
+        }
+
+
+        .card p {
+            color: #555;
+        }
+
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+
+        button:hover {
+            background: #1976D2;
+        }
+
+
+        .lesson {
+            background: #fff8df;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+
+        .lesson h2 {
+            color: #e67e22;
+        }
+
+
+        .result {
+            background: #e8f5e9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+
+        .result h2 {
+            color: #2e7d32;
+        }
+
+
+        .subscription {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+
+        .subscription h2 {
+            color: #8e44ad;
+        }
+
+
+        .progress-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+
+        .progress {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #2196F3;
+            transition: width 0.5s;
+        }
+
+
+        .logout {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+
+        .logout button {
+            background: #f44336;
+        }
+
+
+        .logout button:hover {
+            background: #d32f2f;
+        }
+
+
+        footer {
+            margin-top: 30px;
+            background: #2196F3;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🎓 لوحة الطالب</h1>
+
+    <p>
+        أهلاً بك في أكاديمية الدراسات الاجتماعية
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- الترحيب -->
+
+    <div class="welcome">
+
+        <h2>
+            👋 أهلاً يا
+            <span id="studentName">الطالب</span>
+        </h2>
+
+        <p>
+            نتمنى لك رحلة تعليمية ممتعة ومفيدة 🌟
+        </p>
+
+    </div>
+
+
+
+    <!-- بيانات الطالب -->
+
+    <div class="student-info">
+
+        <h2>
+            👨‍🎓 بيانات الطالب
+        </h2>
+
+
+        <div class="info-row">
+
+
+            <div class="info-box">
+
+                <strong>
+                    👤 اسم المستخدم
+                </strong>
+
+                <span id="studentUsername">
+                    -
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <strong>
+                    🎓 الصف الدراسي
+                </strong>
+
+                <span id="studentGrade">
+                    -
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <strong>
+                    📱 رقم الهاتف
+                </strong>
+
+                <span id="studentPhone">
+                    -
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- الحصة القادمة -->
+
+    <div class="lesson">
+
+        <h2>
+            📅 الحصة القادمة
+        </h2>
+
+        <p>
+            <strong>المادة:</strong>
+            الدراسات الاجتماعية
+        </p>
+
+        <p>
+            <strong>الدرس:</strong>
+            موقع الوطن العربي
+        </p>
+
+        <p>
+            <strong>اليوم:</strong>
+            الأحد
+        </p>
+
+        <p>
+            <strong>الساعة:</strong>
+            6:00 مساءً
+        </p>
+
+
+        <button
+            onclick="window.location.href='lesson.html'">
+
+            🎥 دخول الحصة
+
+        </button>
+
+    </div>
+
+
+
+    <!-- الصفحات -->
+
+    <div class="cards">
+
+
+        <!-- الدروس -->
+
+        <div class="card">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h3>
+                الدروس
+            </h3>
+
+            <p>
+                شاهد الدروس والوحدات
+            </p>
+
+            <button
+                onclick="window.location.href='lessons.html'">
+
+                فتح الدروس
+
+            </button>
+
+        </div>
+
+
+
+        <!-- الاختبارات -->
+
+        <div class="card">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h3>
+                الاختبارات
+            </h3>
+
+            <p>
+                اختبر معلوماتك
+            </p>
+
+            <button
+                onclick="window.location.href='questions.html'">
+
+                بدء الاختبار
+
+            </button>
+
+        </div>
+
+
+
+        <!-- الحضور -->
+
+        <div class="card">
+
+            <div class="icon">
+                🟢
+            </div>
+
+            <h3>
+                الحضور
+            </h3>
+
+            <p>
+                تابع سجل حضورك
+            </p>
+
+            <button
+                onclick="window.location.href='attendance.html'">
+
+                عرض الحضور
+
+            </button>
+
+        </div>
+
+
+
+        <!-- التقييم -->
+
+        <div class="card">
+
+            <div class="icon">
+                ⭐
+            </div>
+
+            <h3>
+                التقييم
+            </h3>
+
+            <p>
+                قيّم الحصة والمعلم
+            </p>
+
+            <button
+                onclick="window.location.href='evaluation.html'">
+
+                التقييم
+
+            </button>
+
+        </div>
+
+
+
+        <!-- الاشتراك -->
+
+        <div class="card">
+
+            <div class="icon">
+                💳
+            </div>
+
+            <h3>
+                الاشتراك
+            </h3>
+
+            <p>
+                تابع اشتراكك ومواعيد الدفع
+            </p>
+
+            <button
+                onclick="window.location.href='subscription.html'">
+
+                الاشتراك
+
+            </button>
+
+        </div>
+
+
+
+        <!-- التواصل -->
+
+        <div class="card">
+
+            <div class="icon">
+                📩
+            </div>
+
+            <h3>
+                التواصل
+            </h3>
+
+            <p>
+                تواصل مع المعلم
+            </p>
+
+            <button
+                onclick="window.location.href='connect.html'">
+
+                تواصل معنا
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- نسبة التقدم -->
+
+    <div class="progress-box">
+
+        <h2>
+            📈 تقدمي الدراسي
+        </h2>
+
+        <p>
+            نسبة إتمام الدروس
+        </p>
+
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+
+        <h3 id="progressText">
+            0%
+        </h3>
+
+    </div>
+
+
+
+    <!-- آخر نتيجة -->
+
+    <div class="result">
+
+        <h2>
+            🏆 آخر نتيجة
+        </h2>
+
+        <p>
+            اختبار الوحدة الأولى
+        </p>
+
+        <h2>
+            ⭐ 9 / 10
+        </h2>
+
+    </div>
+
+
+
+    <!-- الاشتراك -->
+
+    <div class="subscription">
+
+        <h2>
+            💳 حالة الاشتراك
+        </h2>
+
+        <p>
+            الحالة:
+            <strong>✅ نشط</strong>
+        </p>
+
+        <p>
+            عدد الحصص المتبقية:
+            <strong>8 حصص</strong>
+        </p>
+
+        <p>
+            موعد الدفع القادم:
+            <strong>1 أكتوبر 2026</strong>
+        </p>
+
+    </div>
+
+
+
+    <!-- تسجيل الخروج -->
+
+    <div class="logout">
+
+        <button onclick="logout()">
+
+            🚪 تسجيل الخروج
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+
+<footer>
+
+    <p>
+        🎓 reham saleh academy
+    </p>
+
+    <p>
+        نتعلم اليوم لننجح غدًا 🌟
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+
+}
+
+
+
+/* =========================
+   عرض بيانات الطالب
+========================= */
+
+
+let savedName =
+    localStorage.getItem("studentName");
+
+
+let savedGrade =
+    localStorage.getItem("studentGrade");
+
+
+let savedPhone =
+    localStorage.getItem("studentPhone");
+
+
+let savedUsername =
+    localStorage.getItem("studentUsername");
+
+
+
+if (savedName) {
+
+    document.getElementById(
+        "studentName"
+    ).textContent = savedName;
+
+}
+
+
+if (savedGrade) {
+
+    document.getElementById(
+        "studentGrade"
+    ).textContent = savedGrade;
+
+}
+
+
+if (savedPhone) {
+
+    document.getElementById(
+        "studentPhone"
+    ).textContent = savedPhone;
+
+}
+
+
+if (savedUsername) {
+
+    document.getElementById(
+        "studentUsername"
+    ).textContent = savedUsername;
+
+}
+
+
+
+/* =========================
+   نسبة التقدم
+========================= */
+
+
+let progress =
+    localStorage.getItem("studentProgress");
+
+
+if (!progress) {
+
+    progress = 0;
+
+}
+
+
+document.getElementById(
+    "progressBar"
+).style.width = progress + "%";
+
+
+document.getElementById(
+    "progressText"
+).textContent = progress + "%";
+
+
+
+/* =========================
+   تسجيل الخروج
+========================= */
+
+
+function logout() {
+
+    localStorage.removeItem(
+        "studentLoggedIn"
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+

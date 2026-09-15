@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تواصل معنا</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e3f2fd;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 130px;
+            resize: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2196f3;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2196f3;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📩 تواصل معنا</h1>
+        <p>أكاديمية الدراسات الاجتماعية</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>✏️ ارسل رسالتك</h2>
+
+            <label>اسم الطالب</label>
+
+            <input
+                type="text"
+                id="studentName"
+                placeholder="اكتب اسمك"
+            >
+
+            <label>الموضوع</label>
+
+            <input
+                type="text"
+                id="subject"
+                placeholder="مثلاً: استفسار عن الحصة"
+            >
+
+            <label>الرسالة</label>
+
+            <textarea
+                id="messageText"
+                placeholder="اكتب رسالتك هنا..."
+            ></textarea>
+
+            <button onclick="sendMessage()">
+                📤 إرسال الرسالة
+            </button>
+
+            <div id="message"></div>
+
+            <a href="student.html" class="back">
+                ⬅️ العودة إلى لوحة الطالب
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function sendMessage() {
+
+            let name =
+                document.getElementById("studentName").value;
+
+            let subject =
+                document.getElementById("subject").value;
+
+            let text =
+                document.getElementById("messageText").value;
+
+            let message =
+                document.getElementById("message");
+
+
+            if (name === "" || subject === "" || text === "") {
+
+                message.innerHTML =
+                    "⚠️ من فضلك املأ جميع البيانات";
+
+                message.style.color = "red";
+
+                return;
+            }
+
+
+            message.innerHTML =
+                "✅ تم إرسال رسالتك بنجاح";
+
+            message.style.color = "green";
+
+
+            document.getElementById("studentName").value = "";
+            document.getElementById("subject").value = "";
+            document.getElementById("messageText").value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>

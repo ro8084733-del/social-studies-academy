@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الاشتراك والدفع</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #eef8ff;
+    color: #263238;
+}
+
+/* الهيدر */
+
+header {
+    background: linear-gradient(135deg, #2196F3, #00BCD4);
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+/* المحتوى */
+
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* الكروت */
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px #d5d5d5;
+}
+
+.card h2 {
+    color: #1976D2;
+    margin-bottom: 20px;
+}
+
+/* حالة الاشتراك */
+
+.status {
+    background: #fff8e1;
+    border-right: 6px solid #FFC107;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.pending {
+    color: #f57c00;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* بيانات الاشتراك */
+
+.payment-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.info {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.info h3 {
+    color: #1976D2;
+    margin-bottom: 10px;
+}
+
+/* بيانات الدفع */
+
+.payment-method {
+    background: #f3e5f5;
+    border-right: 6px solid #9C27B0;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.payment-method p {
+    margin: 10px 0;
+}
+
+/* اسم المستفيد */
+
+.owner {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.owner strong {
+    color: #2e7d32;
+    font-size: 18px;
+}
+
+/* رقم المحفظة */
+
+.wallet-number {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 15px;
+    text-align: center;
+    border: 2px dashed #9C27B0;
+}
+
+.wallet-number p {
+    color: #6A1B9A;
+    font-weight: bold;
+}
+
+.wallet-number strong {
+    display: block;
+    font-size: 24px;
+    color: #1976D2;
+    margin-top: 8px;
+    direction: ltr;
+}
+
+/* الحقول */
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2196F3;
+}
+
+/* الأزرار */
+
+button {
+    width: 100%;
+    border: none;
+    background: #25D366;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #128C7E;
+}
+
+/* زر التواصل */
+
+.contact-button {
+    background: #2196F3;
+}
+
+.contact-button:hover {
+    background: #1976D2;
+}
+
+/* الفوتر */
+
+footer {
+    background: #263238;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- الهيدر -->
+
+<header>
+
+<h1>💰 الاشتراك والدفع</h1>
+
+<p>أكاديمية الدراسات الاجتماعية 🌍</p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- حالة الاشتراك -->
+
+<div class="card">
+
+<h2>📊 حالة الاشتراك</h2>
+
+<div class="status">
+
+<p class="pending">
+🟠 في انتظار تأكيد الاشتراك
+</p>
+
+<p>
+قم بتحويل قيمة الاشتراك ثم أرسل بيانات التحويل.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- بيانات الاشتراك -->
+
+<div class="card">
+
+<h2>📅 بيانات الاشتراك</h2>
+
+<div class="payment-info">
+
+
+<div class="info">
+
+<h3>💵 قيمة الاشتراك</h3>
+
+<p>800 جنيه</p>
+
+</div>
+
+
+<div class="info">
+
+<h3>📚 نوع الاشتراك</h3>
+
+<p>اشتراك أكاديمية الدراسات الاجتماعية</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- بيانات التحويل -->
+
+<div class="card">
+
+<h2>💳 بيانات التحويل</h2>
+
+
+<div class="payment-method">
+
+<h3>📱 محفظة اتصالات كاش</h3>
+
+<p>
+قم بتحويل مبلغ:
+</p>
+
+<strong>
+800 جنيه
+</strong>
+
+
+<!-- اسم المستفيد -->
+
+<div class="owner">
+
+<p>
+👤 اسم المستفيد
+</p>
+
+<strong>
+ريهام صالح عبدالرحمن محمود
+</strong>
+
+</div>
+
+
+<!-- رقم المحفظة -->
+
+<div class="wallet-number">
+
+<p>
+📞 رقم محفظة اتصالات كاش
+</p>
+
+<strong>
+01157126119
+</strong>
+
+</div>
+
+
+<p>
+⚠️ بعد التحويل، احتفظ برقم عملية التحويل ثم املأ النموذج بالأسفل.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- نموذج تأكيد التحويل -->
+
+<div class="card">
+
+<h2>🧾 تأكيد التحويل</h2>
+
+<p>
+بعد إتمام التحويل، اكتب بياناتك التالية ثم اضغط إرسال الطلب عبر واتساب.
+</p>
+
+
+<label>
+👤 اسم الطالب
+</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="اكتب اسم الطالب">
+
+
+<label>
+📞 رقم الهاتف
+</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="اكتب رقم الهاتف">
+
+
+<label>
+🔢 رقم عملية التحويل
+</label>
+
+<input
+type="text"
+id="transferNumber"
+placeholder="اكتب رقم أو مرجع عملية التحويل">
+
+
+<button onclick="sendWhatsApp()">
+
+📱 إرسال طلب التأكيد عبر واتساب
+
+</button>
+
+</div>
+
+
+<!-- التواصل -->
+
+<div class="card">
+
+<h2>📞 تحتاج إلى مساعدة؟</h2>
+
+<p>
+إذا واجهت مشكلة أثناء التحويل، يمكنك التواصل مع إدارة الأكاديمية.
+</p>
+
+<button
+class="contact-button"
+onclick="contactTeacher()">
+
+📞 تواصل مع الإدارة
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<!-- الفوتر -->
+
+<footer>
+
+<p>🌍 أكاديمية الدراسات الاجتماعية</p>
+
+<p>© 2026 جميع الحقوق محفوظة</p>
+
+</footer>
+
+
+<script>
+
+
+/* إرسال بيانات التحويل إلى واتساب */
+
+function sendWhatsApp() {
+
+    let name =
+    document.getElementById("studentName").value.trim();
+
+    let phone =
+    document.getElementById("phone").value.trim();
+
+    let transfer =
+    document.getElementById("transferNumber").value.trim();
+
+
+    /* التأكد من ملء البيانات */
+
+    if (name === "" || phone === "" || transfer === "") {
+
+        alert(
+            "⚠️ من فضلك املأ جميع البيانات قبل إرسال الطلب."
+        );
+
+        return;
+    }
+
+
+    /* رقم واتساب الإدارة */
+
+    let whatsappNumber = "201157126119";
+
+
+    /* إنشاء الرسالة */
+
+    let message =
+        "🌍 *أكاديمية الدراسات الاجتماعية*%0A%0A" +
+
+        "🧾 *طلب تأكيد تحويل جديد*%0A%0A" +
+
+        "👤 اسم الطالب: " + encodeURIComponent(name) + "%0A" +
+
+        "📞 رقم الهاتف: " + encodeURIComponent(phone) + "%0A" +
+
+        "🔢 رقم عملية التحويل: " + encodeURIComponent(transfer) + "%0A%0A" +
+
+        "💰 قيمة الاشتراك: 800 جنيه%0A" +
+
+        "📱 طريقة الدفع: اتصالات كاش%0A" +
+
+        "📞 محفظة الدفع: 01157126119%0A%0A" +
+
+        "⏳ يرجى مراجعة عملية التحويل وتأكيد الاشتراك.";
+
+
+    /* فتح واتساب */
+
+    let whatsappURL =
+        "https://wa.me/" + whatsappNumber + "?text=" + message;
+
+
+    window.open(whatsappURL, "_blank");
+
+}
+
+
+/* زر التواصل */
+
+function contactTeacher() {
+
+    let whatsappNumber = "201157126119";
+
+    let message =
+        "السلام عليكم، أريد الاستفسار عن الاشتراك في أكاديمية الدراسات الاجتماعية.";
+
+    let whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

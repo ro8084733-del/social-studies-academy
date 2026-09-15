@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إدارة الدروس</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eaf7ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .lesson {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .lesson h3 {
+            color: #2196F3;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .back {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .back button {
+            background: #555;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📚 إدارة الدروس</h1>
+
+    <p>لوحة المعلم</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- إضافة درس -->
+
+    <div class="box">
+
+        <h2>➕ إضافة درس جديد</h2>
+
+        <input
+            type="text"
+            id="lessonName"
+            placeholder="اسم الدرس">
+
+        <select id="grade">
+
+            <option value="">اختر الصف</option>
+
+            <option>الصف الرابع</option>
+
+            <option>الصف الخامس</option>
+
+            <option>الصف السادس</option>
+
+            <option>الصف الأول الإعدادي</option>
+
+            <option>الصف الثاني الإعدادي</option>
+
+            <option>الصف الثالث الإعدادي</option>
+
+        </select>
+
+
+        <select id="unit">
+
+            <option value="">اختر الوحدة</option>
+
+            <option>الوحدة الأولى</option>
+
+            <option>الوحدة الثانية</option>
+
+            <option>الوحدة الثالثة</option>
+
+            <option>الوحدة الرابعة</option>
+
+        </select>
+
+
+        <input
+            type="date"
+            id="lessonDate">
+
+
+        <input
+            type="time"
+            id="lessonTime">
+
+
+        <button onclick="addLesson()">
+
+            ✅ إضافة الدرس
+
+        </button>
+
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <!-- الدروس الموجودة -->
+
+    <div class="box">
+
+        <h2>📋 الدروس الموجودة</h2>
+
+        <div id="lessonsList">
+
+            <div class="lesson">
+
+                <h3>📍 موقع الوطن العربي</h3>
+
+                <p>📚 الوحدة الأولى</p>
+
+                <p>🎓 الصف السادس</p>
+
+                <p>📅 الأحد - 6:00 مساءً</p>
+
+            </div>
+
+
+            <div class="lesson">
+
+                <h3>🌍 قارات العالم</h3>
+
+                <p>📚 الوحدة الأولى</p>
+
+                <p>🎓 الصف الخامس</p>
+
+                <p>📅 الاثنين - 5:00 مساءً</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="back">
+
+        <button onclick="window.location.href='admin.html'">
+
+            ↩️ العودة للوحة المعلم
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function addLesson() {
+
+    let lessonName =
+        document.getElementById("lessonName").value.trim();
+
+    let grade =
+        document.getElementById("grade").value;
+
+    let unit =
+        document.getElementById("unit").value;
+
+    let date =
+        document.getElementById("lessonDate").value;
+
+    let time =
+        document.getElementById("lessonTime").value;
+
+    let message =
+        document.getElementById("message");
+
+
+    if (
+        lessonName === "" ||
+        grade === "" ||
+        unit === "" ||
+        date === "" ||
+        time === ""
+    ) {
+
+        message.textContent =
+            "⚠️ من فضلك املأ جميع البيانات";
+
+        message.style.color = "red";
+
+        return;
+
+    }
+
+
+    let lessonsList =
+        document.getElementById("lessonsList");
+
+
+    let newLesson =
+        document.createElement("div");
+
+    newLesson.className = "lesson";
+
+
+    newLesson.innerHTML = `
+        <h3>📍 ${lessonName}</h3>
+
+        <p>📚 ${unit}</p>
+
+        <p>🎓 ${grade}</p>
+
+        <p>📅 ${date} - ⏰ ${time}</p>
+    `;
+
+
+    lessonsList.appendChild(newLesson);
+
+
+    message.textContent =
+        "🎉 تم إضافة الدرس بنجاح";
+
+    message.style.color = "green";
+
+
+    document.getElementById("lessonName").value = "";
+
+    document.getElementById("grade").value = "";
+
+    document.getElementById("unit").value = "";
+
+    document.getElementById("lessonDate").value = "";
+
+    document.getElementById("lessonTime").value = "";
+
+}
+
+</script>
+
+</body>
+
+</html>

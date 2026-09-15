@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>حضور الطالب</title>
+
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #e3f2fd;
+
+        }
+
+
+        header {
+
+            background: linear-gradient(
+                135deg,
+                #1976d2,
+                #42a5f5
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+        }
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 800px;
+
+            margin: 30px auto;
+
+        }
+
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .stat {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.1);
+
+        }
+
+
+        .stat .number {
+
+            font-size: 35px;
+
+            font-weight: bold;
+
+            color: #1976d2;
+
+        }
+
+
+        .stat p {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.1);
+
+        }
+
+
+        h2 {
+
+            color: #1976d2;
+
+        }
+
+
+        .lesson {
+
+            background: #f5f9ff;
+
+            padding: 18px;
+
+            margin-top: 15px;
+
+            border-radius: 15px;
+
+            border-right: 5px solid #2196f3;
+
+        }
+
+
+        .present {
+
+            color: green;
+
+            font-weight: bold;
+
+        }
+
+
+        .absent {
+
+            color: red;
+
+            font-weight: bold;
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #2196f3;
+
+            color: white;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background: #1976d2;
+
+        }
+
+
+        #message {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-weight: bold;
+
+        }
+
+
+        .back {
+
+            display: block;
+
+            text-align: center;
+
+            margin: 25px;
+
+            color: #1976d2;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🟢 حضور الطالب</h1>
+
+    <p>
+        متابعة الحضور والحصص
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- إحصائيات الحضور -->
+
+    <div class="cards">
+
+
+        <div class="stat">
+
+            <div class="number">
+                8
+            </div>
+
+            <p>
+                🟢 حصص حضرها
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="number">
+                1
+            </div>
+
+            <p>
+                🔴 حصص غاب عنها
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="number">
+                9
+            </div>
+
+            <p>
+                📚 إجمالي الحصص
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- سجل الحضور -->
+
+    <div class="card">
+
+        <h2>
+            📋 سجل الحضور
+        </h2>
+
+
+        <div class="lesson">
+
+            <b>
+                📅 الأحد 6 سبتمبر
+            </b>
+
+            <p>
+                الدراسات الاجتماعية - الوحدة الأولى
+            </p>
+
+            <span class="present">
+                🟢 حاضر
+            </span>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <b>
+                📅 الأحد 13 سبتمبر
+            </b>
+
+            <p>
+                الدراسات الاجتماعية - الدرس الثاني
+            </p>
+
+            <span class="present">
+                🟢 حاضر
+            </span>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <b>
+                📅 الأحد 20 سبتمبر
+            </b>
+
+            <p>
+                الدراسات الاجتماعية - الدرس الثالث
+            </p>
+
+            <span class="absent">
+                🔴 غائب
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- الحصة القادمة -->
+
+    <div class="card">
+
+        <h2>
+            ⏰ الحصة القادمة
+        </h2>
+
+
+        <div class="lesson">
+
+            <b>
+                📅 الأحد القادم
+            </b>
+
+            <p>
+                🕕 الساعة 6:00 مساءً
+            </p>
+
+            <p>
+                📚 الدراسات الاجتماعية
+            </p>
+
+        </div>
+
+
+        <button onclick="joinLesson()">
+
+            🎥 دخول الحصة
+
+        </button>
+
+
+        <div id="message"></div>
+
+    </div>
+
+
+
+    <a href="student.html" class="back">
+
+        ⬅️ العودة إلى لوحة الطالب
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+
+function joinLesson() {
+
+    document.getElementById("message").innerHTML =
+        "🎥 سيتم فتح رابط الحصة هنا لاحقًا.";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

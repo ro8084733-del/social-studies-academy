@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إدارة الأسئلة</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eaf7ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .question {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .question h3 {
+            color: #2196F3;
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .back {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .back button {
+            background: #555;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📝 إدارة الاختبارات</h1>
+
+    <p>لوحة المعلم</p>
+
+</header>
+
+
+<div class="container">
+
+    <!-- إضافة سؤال -->
+
+    <div class="box">
+
+        <h2>➕ إضافة سؤال جديد</h2>
+
+        <input
+            type="text"
+            id="question"
+            placeholder="اكتب السؤال">
+
+        <input
+            type="text"
+            id="answer1"
+            placeholder="الاختيار الأول">
+
+        <input
+            type="text"
+            id="answer2"
+            placeholder="الاختيار الثاني">
+
+        <input
+            type="text"
+            id="answer3"
+            placeholder="الاختيار الثالث">
+
+        <input
+            type="text"
+            id="answer4"
+            placeholder="الاختيار الرابع">
+
+
+        <select id="correct">
+
+            <option value="">اختر الإجابة الصحيحة</option>
+
+            <option value="1">الاختيار الأول</option>
+
+            <option value="2">الاختيار الثاني</option>
+
+            <option value="3">الاختيار الثالث</option>
+
+            <option value="4">الاختيار الرابع</option>
+
+        </select>
+
+
+        <button onclick="addQuestion()">
+
+            ✅ إضافة السؤال
+
+        </button>
+
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <!-- الأسئلة الموجودة -->
+
+    <div class="box">
+
+        <h2>📋 الأسئلة الموجودة</h2>
+
+        <div id="questionsList">
+
+            <div class="question">
+
+                <h3>ما عاصمة مصر؟</h3>
+
+                <p>أ) الإسكندرية</p>
+
+                <p class="correct">ب) القاهرة ✅</p>
+
+                <p>ج) أسوان</p>
+
+                <p>د) الأقصر</p>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>ما النهر الذي يمر في مصر؟</h3>
+
+                <p class="correct">أ) نهر النيل ✅</p>
+
+                <p>ب) نهر دجلة</p>
+
+                <p>ج) نهر الفرات</p>
+
+                <p>د) نهر الأردن</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="back">
+
+        <button onclick="window.location.href='admin.html'">
+
+            ↩️ العودة للوحة المعلم
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function addQuestion() {
+
+    let question =
+        document.getElementById("question").value.trim();
+
+    let answer1 =
+        document.getElementById("answer1").value.trim();
+
+    let answer2 =
+        document.getElementById("answer2").value.trim();
+
+    let answer3 =
+        document.getElementById("answer3").value.trim();
+
+    let answer4 =
+        document.getElementById("answer4").value.trim();
+
+    let correct =
+        document.getElementById("correct").value;
+
+    let message =
+        document.getElementById("message");
+
+
+    if (
+        question === "" ||
+        answer1 === "" ||
+        answer2 === "" ||
+        answer3 === "" ||
+        answer4 === "" ||
+        correct === ""
+    ) {
+
+        message.textContent =
+            "⚠️ من فضلك املأ جميع البيانات";
+
+        message.style.color = "red";
+
+        return;
+
+    }
+
+
+    let answers = [
+        answer1,
+        answer2,
+        answer3,
+        answer4
+    ];
+
+
+    let list =
+        document.getElementById("questionsList");
+
+
+    let newQuestion =
+        document.createElement("div");
+
+    newQuestion.className = "question";
+
+
+    let html = `<h3>${question}</h3>`;
+
+
+    for (let i = 0; i < answers.length; i++) {
+
+        if (i + 1 == correct) {
+
+            html += `<p class="correct">
+                ${String.fromCharCode(1571 + i)}) 
+                ${answers[i]} ✅
+            </p>`;
+
+        } else {
+
+            html += `<p>
+                ${String.fromCharCode(1571 + i)}) 
+                ${answers[i]}
+            </p>`;
+
+        }
+
+    }
+
+
+    newQuestion.innerHTML = html;
+
+    list.appendChild(newQuestion);
+
+
+    message.textContent =
+        "🎉 تم إضافة السؤال بنجاح";
+
+    message.style.color = "green";
+
+
+    document.getElementById("question").value = "";
+
+    document.getElementById("answer1").value = "";
+
+    document.getElementById("answer2").value = "";
+
+    document.getElementById("answer3").value = "";
+
+    document.getElementById("answer4").value = "";
+
+    document.getElementById("correct").value = "";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>الدروس</title>
+
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e3f2fd;
+        }
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #1976d2,
+                #42a5f5
+            );
+
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .unit {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 20px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.12);
+        }
+
+        .unit h2 {
+            color: #1976d2;
+        }
+
+        .lesson {
+            background: #f5f9ff;
+            padding: 18px;
+            margin-top: 15px;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .lesson h3 {
+            margin: 0 0 7px;
+        }
+
+        .lesson p {
+            margin: 0;
+            color: #555;
+        }
+
+        button {
+            background: #2196f3;
+            color: white;
+
+            border: none;
+            border-radius: 10px;
+
+            padding: 12px 18px;
+
+            font-size: 16px;
+            cursor: pointer;
+
+            white-space: nowrap;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+
+            margin: 25px auto;
+
+            color: #1976d2;
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            .lesson {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>📚 دروس الدراسات الاجتماعية</h1>
+
+    <p>
+        اختار الدرس وابدأ التعلم 🚀
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- الوحدة الأولى -->
+
+    <div class="unit">
+
+        <h2>
+            🌍 الوحدة الأولى: وطننا العربي
+        </h2>
+
+
+        <div class="lesson">
+
+            <div>
+
+                <h3>
+                    📖 الدرس الأول: موقع الوطن العربي
+                </h3>
+
+                <p>
+                    التعرف على موقع الوطن العربي وأهميته.
+                </p>
+
+            </div>
+
+
+            <button onclick="openLesson()">
+
+                ▶️ ابدأ الدرس
+
+            </button>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <div>
+
+                <h3>
+                    📖 الدرس الثاني: تضاريس الوطن العربي
+                </h3>
+
+                <p>
+                    التعرف على الجبال والهضاب والسهول.
+                </p>
+
+            </div>
+
+
+            <button onclick="openLesson()">
+
+                ▶️ ابدأ الدرس
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- الوحدة الثانية -->
+
+    <div class="unit">
+
+        <h2>
+            🏛️ الوحدة الثانية: الحضارة
+        </h2>
+
+
+        <div class="lesson">
+
+            <div>
+
+                <h3>
+                    📖 الحضارة المصرية القديمة
+                </h3>
+
+                <p>
+                    رحلة للتعرف على الحضارة المصرية القديمة.
+                </p>
+
+            </div>
+
+
+            <button onclick="openLesson()">
+
+                ▶️ ابدأ الدرس
+
+            </button>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <div>
+
+                <h3>
+                    📖 أهم إنجازات المصريين القدماء
+                </h3>
+
+                <p>
+                    التعرف على أهم إنجازات المصريين القدماء.
+                </p>
+
+            </div>
+
+
+            <button onclick="openLesson()">
+
+                ▶️ ابدأ الدرس
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- الوحدة الثالثة -->
+
+    <div class="unit">
+
+        <h2>
+            🗺️ الوحدة الثالثة: السكان
+        </h2>
+
+
+        <div class="lesson">
+
+            <div>
+
+                <h3>
+                    👨‍👩‍👧‍👦 درس السكان
+                </h3>
+
+                <p>
+                    التعرف على مفهوم السكان وتوزيعهم.
+                </p>
+
+            </div>
+
+
+            <button onclick="openLesson()">
+
+                ▶️ ابدأ الدرس
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <a href="index.html" class="back">
+
+        🏠 العودة إلى الصفحة الرئيسية
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+    function openLesson() {
+
+        window.location.href =
+            "lesson-content.html";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

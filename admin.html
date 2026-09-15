@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إدارة الطلاب</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eaf7ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #2196F3;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f5fbff;
+        }
+
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .expired {
+            color: red;
+            font-weight: bold;
+        }
+
+        .back {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .back button {
+            background: #555;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>👨‍🎓 إدارة الطلاب</h1>
+
+    <p>أكاديمية الدراسات الاجتماعية</p>
+
+</header>
+
+<div class="container">
+
+    <!-- إضافة طالب -->
+
+    <div class="box">
+
+        <h2>➕ إضافة طالب جديد</h2>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="اسم الطالب">
+
+        <input
+            type="text"
+            id="studentGrade"
+            placeholder="الصف الدراسي">
+
+        <input
+            type="text"
+            id="studentPhone"
+            placeholder="رقم الهاتف">
+
+        <select id="subscription">
+
+            <option value="">اختر حالة الاشتراك</option>
+
+            <option value="نشط">نشط</option>
+
+            <option value="منتهي">منتهي</option>
+
+        </select>
+
+        <button onclick="addStudent()">
+            ✅ إضافة الطالب
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <!-- قائمة الطلاب -->
+
+    <div class="box">
+
+        <h2>📋 قائمة الطلاب</h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>الاسم</th>
+
+                        <th>الصف</th>
+
+                        <th>الهاتف</th>
+
+                        <th>الاشتراك</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentsTable">
+
+                    <tr>
+
+                        <td>محمد أحمد</td>
+
+                        <td>الصف السادس</td>
+
+                        <td>01000000000</td>
+
+                        <td class="active">نشط</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>سارة علي</td>
+
+                        <td>الصف الخامس</td>
+
+                        <td>01111111111</td>
+
+                        <td class="active">نشط</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>أحمد محمود</td>
+
+                        <td>الصف الرابع</td>
+
+                        <td>01222222222</td>
+
+                        <td class="expired">منتهي</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- العودة -->
+
+    <div class="back">
+
+        <button onclick="window.location.href='admin.html'">
+
+            ↩️ العودة للوحة المعلم
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function addStudent() {
+
+    let name =
+        document.getElementById("studentName").value.trim();
+
+    let grade =
+        document.getElementById("studentGrade").value.trim();
+
+    let phone =
+        document.getElementById("studentPhone").value.trim();
+
+    let subscription =
+        document.getElementById("subscription").value;
+
+    let message =
+        document.getElementById("message");
+
+
+    if (
+        name === "" ||
+        grade === "" ||
+        phone === "" ||
+        subscription === ""
+    ) {
+
+        message.textContent =
+            "⚠️ من فضلك املأ جميع البيانات";
+
+        message.style.color = "red";
+
+        return;
+
+    }
+
+
+    let table =
+        document.getElementById("studentsTable");
+
+
+    let row =
+        table.insertRow();
+
+
+    row.insertCell(0).textContent = name;
+
+    row.insertCell(1).textContent = grade;
+
+    row.insertCell(2).textContent = phone;
+
+
+    let statusCell =
+        row.insertCell(3);
+
+    statusCell.textContent =
+        subscription;
+
+
+    if (subscription === "نشط") {
+
+        statusCell.className = "active";
+
+    } else {
+
+        statusCell.className = "expired";
+
+    }
+
+
+    message.textContent =
+        "🎉 تم إضافة الطالب بنجاح";
+
+    message.style.color = "green";
+
+
+    document.getElementById("studentName").value = "";
+
+    document.getElementById("studentGrade").value = "";
+
+    document.getElementById("studentPhone").value = "";
+
+    document.getElementById("subscription").value = "";
+
+}
+
+</script>
+
+</body>
+
+</html>

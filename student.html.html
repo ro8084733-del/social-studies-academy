@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>لوحة الطالب</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eaf7ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .card .icon {
+            font-size: 40px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .lesson {
+            background: #fff8df;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .result {
+            background: #e8f5e9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .subscription {
+            background: #f3e5f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .logout {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .logout button {
+            background: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 لوحة الطالب</h1>
+    <p>أهلاً بك في أكاديمية الدراسات الاجتماعية</p>
+</header>
+
+<div class="container">
+
+    <!-- الترحيب -->
+    <div class="welcome">
+        <h2>👋 أهلاً يا <span id="studentName">محمد</span></h2>
+        <p>نتمنى لك رحلة تعليمية ممتعة ومفيدة 🌟</p>
+    </div>
+
+    <!-- الحصة القادمة -->
+    <div class="lesson">
+        <h2>📅 الحصة القادمة</h2>
+        <p><strong>المادة:</strong> الدراسات الاجتماعية</p>
+        <p><strong>الدرس:</strong> موقع الوطن العربي</p>
+        <p><strong>اليوم:</strong> الأحد</p>
+        <p><strong>الساعة:</strong> 6:00 مساءً</p>
+
+        <button onclick="window.location.href='lesson.html'">
+            🎥 دخول الحصة
+        </button>
+    </div>
+
+    <!-- الصفحات -->
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>الدروس</h3>
+            <p>شاهد الدروس والوحدات</p>
+            <button onclick="window.location.href='lessons.html'">
+                فتح الدروس
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">📝</div>
+            <h3>الاختبارات</h3>
+            <p>اختبر معلوماتك</p>
+            <button onclick="window.location.href='questions.html'">
+                بدء الاختبار
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">🟢</div>
+            <h3>الحضور</h3>
+            <p>تابع سجل حضورك</p>
+            <button onclick="window.location.href='attendance.html'">
+                عرض الحضور
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">⭐</div>
+            <h3>التقييم</h3>
+            <p>قيّم الحصة والمعلم</p>
+            <button onclick="window.location.href='evaluation.html'">
+                التقييم
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">💳</div>
+            <h3>الاشتراك</h3>
+            <p>تابع اشتراكك ومواعيد الدفع</p>
+            <button onclick="window.location.href='subscription.html'">
+                الاشتراك
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">📩</div>
+            <h3>التواصل</h3>
+            <p>تواصل مع المعلم</p>
+            <button onclick="window.location.href='connect.html'">
+                تواصل معنا
+            </button>
+        </div>
+
+    </div>
+
+    <!-- آخر نتيجة -->
+    <div class="result">
+        <h2>🏆 آخر نتيجة</h2>
+        <p>اختبار الوحدة الأولى</p>
+        <h2>⭐ 9 / 10</h2>
+    </div>
+
+    <!-- الاشتراك -->
+    <div class="subscription">
+        <h2>💳 حالة الاشتراك</h2>
+        <p>الحالة: ✅ نشط</p>
+        <p>عدد الحصص المتبقية: <strong>8 حصص</strong></p>
+        <p>موعد الدفع القادم: 1 أكتوبر 2026</p>
+    </div>
+
+    <!-- تسجيل الخروج -->
+    <div class="logout">
+        <button onclick="logout()">
+            🚪 تسجيل الخروج
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+    // إظهار اسم الطالب المسجل
+    let savedName = localStorage.getItem("studentName");
+
+    if (savedName) {
+        document.getElementById("studentName").textContent = savedName;
+    }
+
+    // تسجيل الخروج
+    function logout() {
+
+        localStorage.removeItem("studentName");
+        localStorage.removeItem("studentGrade");
+        localStorage.removeItem("studentUsername");
+
+        window.location.href = "index.html";
+    }
+
+</script>
+
+</body>
+</html>

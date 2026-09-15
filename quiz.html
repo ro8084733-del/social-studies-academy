@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>اختبارات الدراسات</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #eef8ff;
+            color: #263238;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2196F3, #00BCD4);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px #d5d5d5;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8fbff;
+            border-radius: 15px;
+            border-right: 5px solid #2196F3;
+        }
+
+        .question h3 {
+            color: #1976D2;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            background: #eeeeee;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        label:hover {
+            background: #e3f2fd;
+        }
+
+        input[type="radio"] {
+            margin-left: 8px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        button:hover {
+            background: #388E3C;
+        }
+
+        #result {
+            display: none;
+            text-align: center;
+            background: #fff8e1;
+            border: 3px solid #FFC107;
+        }
+
+        #result h2 {
+            color: #2E7D32;
+        }
+
+        .score {
+            font-size: 30px;
+            color: #1976D2;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>📝 اختبار الدراسات الاجتماعية</h1>
+
+    <p>أجب عن الأسئلة ثم اضغط على إرسال الاختبار</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- بيانات الطالب -->
+
+    <div class="card">
+
+        <h2>👨‍🎓 بيانات الطالب</h2>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="اكتب اسم الطالب"
+            style="
+            width:100%;
+            padding:13px;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:16px;
+            "
+        >
+
+    </div>
+
+
+    <!-- السؤال الأول -->
+
+    <div class="card">
+
+        <div class="question">
+
+            <h3>1️⃣ ما عاصمة مصر؟</h3>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="1">
+                القاهرة
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="0">
+                أسوان
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="0">
+                الإسكندرية
+            </label>
+
+        </div>
+
+
+        <!-- السؤال الثاني -->
+
+        <div class="question">
+
+            <h3>2️⃣ ما النهر الذي يمر في مصر؟</h3>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="1">
+                نهر النيل
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="0">
+                نهر الأمازون
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="0">
+                نهر دجلة
+            </label>
+
+        </div>
+
+
+        <!-- السؤال الثالث -->
+
+        <div class="question">
+
+            <h3>3️⃣ أين توجد الأهرامات؟</h3>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="1">
+                الجيزة
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="0">
+                أسوان
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="0">
+                الأقصر
+            </label>
+
+        </div>
+
+
+        <!-- السؤال الرابع -->
+
+        <div class="question">
+
+            <h3>4️⃣ ما البحر الذي يحد مصر من الشمال؟</h3>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="1">
+                البحر المتوسط
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="0">
+                البحر الأحمر
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="0">
+                بحر العرب
+            </label>
+
+        </div>
+
+
+        <!-- السؤال الخامس -->
+
+        <div class="question">
+
+            <h3>5️⃣ ما عاصمة المملكة العربية السعودية؟</h3>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value="1">
+                الرياض
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value="0">
+                جدة
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value="0">
+                مكة
+            </label>
+
+        </div>
+
+
+        <button onclick="calculateResult()">
+            ✅ إرسال الاختبار
+        </button>
+
+    </div>
+
+
+    <!-- النتيجة -->
+
+    <div id="result" class="card">
+
+        <h2>🎉 نتيجة الاختبار</h2>
+
+        <p id="studentResult"></p>
+
+        <p class="score" id="score"></p>
+
+        <p id="message"></p>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+function calculateResult() {
+
+    let name =
+        document.getElementById("studentName").value;
+
+
+    if (name === "") {
+
+        alert("⚠️ اكتب اسم الطالب أولاً");
+
+        return;
+
+    }
+
+
+    let score = 0;
+
+    let total = 5;
+
+
+    let questions = [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+    ];
+
+
+    for (let q of questions) {
+
+        let answer =
+            document.querySelector(
+                'input[name="' + q + '"]:checked'
+            );
+
+
+        if (answer) {
+
+            score += Number(answer.value);
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "result"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "studentResult"
+    ).innerHTML =
+        "🎓 الطالب: " + name;
+
+
+    document.getElementById(
+        "score"
+    ).innerHTML =
+        score + " / " + total;
+
+
+    if (score === total) {
+
+        document.getElementById(
+            "message"
+        ).innerHTML =
+            "🌟 ممتاز! أحسنت جدًا";
+
+    }
+
+    else if (score >= 3) {
+
+        document.getElementById(
+            "message"
+        ).innerHTML =
+            "👏 جيد جدًا، استمر في المذاكرة";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "message"
+        ).innerHTML =
+            "💪 حاول مرة أخرى وراجع الدرس";
+
+    }
+
+
+    window.scrollTo(
+        0,
+        document.body.scrollHeight
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

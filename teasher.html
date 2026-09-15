@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>لوحة المدرّسة</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f8ff;
+            color: #263238;
+        }
+
+        /* الهيدر */
+
+        header {
+            background: linear-gradient(135deg, #673AB7, #2196F3);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        /* القائمة */
+
+        nav {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        nav button {
+            background: #673AB7;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* الصفحات */
+
+        .page {
+            display: none;
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* الكروت */
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px #ddd;
+        }
+
+        .card h2 {
+            color: #673AB7;
+            margin-bottom: 20px;
+        }
+
+        /* الإحصائيات */
+
+        .stats {
+            display: grid;
+            grid-template-columns:
+            repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 15px;
+        }
+
+        .stat {
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            background: #EDE7F6;
+        }
+
+        .stat h3 {
+            font-size: 30px;
+            color: #673AB7;
+        }
+
+        /* الإدخال */
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0 15px;
+
+            border: 1px solid #ccc;
+            border-radius: 10px;
+
+            font-size: 16px;
+        }
+
+        /* الأزرار */
+
+        .btn {
+            background: #2196F3;
+            color: white;
+
+            border: none;
+
+            padding: 12px 22px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #1976D2;
+        }
+
+        /* جدول الطلاب */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #EDE7F6;
+            color: #673AB7;
+        }
+
+        /* الحصص */
+
+        .lesson {
+            background: #E8F5E9;
+            border-right: 5px solid #4CAF50;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            margin-top: 15px;
+        }
+
+        /* الاشتراك */
+
+        .payment {
+            background: #FFF8E1;
+            border-right: 5px solid #FFC107;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            margin-top: 15px;
+        }
+
+        /* التقييم */
+
+        .stars {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        footer {
+            background: #263238;
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 30px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- الهيدر -->
+
+<header>
+
+    <h1>👩‍🏫 لوحة المدرّسة</h1>
+
+    <p>أكاديمية الدراسات الاجتماعية 🌍</p>
+
+</header>
+
+
+<!-- القائمة -->
+
+<nav>
+
+    <button onclick="showPage('dashboard')">
+        📊 الرئيسية
+    </button>
+
+    <button onclick="showPage('students')">
+        👨‍🎓 الطلاب
+    </button>
+
+    <button onclick="showPage('lessons')">
+        📚 الحصص
+    </button>
+
+    <button onclick="showPage('evaluation')">
+        ⭐ التقييم
+    </button>
+
+    <button onclick="showPage('payments')">
+        💰 الاشتراكات
+    </button>
+
+</nav>
+
+
+<!-- الرئيسية -->
+
+<section id="dashboard" class="page active">
+
+    <div class="card">
+
+        <h2>📊 لوحة التحكم</h2>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <h3>10</h3>
+
+                <p>👨‍🎓 عدد الطلاب</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3>8</h3>
+
+                <p>📚 حصص هذا الشهر</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3>7</h3>
+
+                <p>💰 اشتراكات نشطة</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3>3</h3>
+
+                <p>⚠️ اشتراكات قريبة الانتهاء</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- الطلاب -->
+
+<section id="students" class="page">
+
+    <div class="card">
+
+        <h2>👨‍🎓 إضافة طالب</h2>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="اسم الطالب">
+
+        <input
+            type="text"
+            id="code"
+            placeholder="كود الطالب">
+
+        <input
+            type="password"
+            id="password"
+            placeholder="كلمة مرور الطالب">
+
+        <select id="grade">
+
+            <option>اختر الصف</option>
+
+            <option>الصف الرابع</option>
+
+            <option>الصف الخامس</option>
+
+            <option>الصف السادس</option>
+
+            <option>المرحلة الإعدادية</option>
+
+        </select>
+
+        <button class="btn"
+                onclick="addStudent()">
+
+            ➕ إضافة الطالب
+
+        </button>
+
+        <p id="studentMessage"></p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📋 الطلاب</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>الاسم</th>
+
+                    <th>الكود</th>
+
+                    <th>الصف</th>
+
+                    <th>الحالة</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="studentTable">
+
+                <tr>
+
+                    <td>محمد أحمد</td>
+
+                    <td>1001</td>
+
+                    <td>السادس</td>
+
+                    <td>🟢 نشط</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>سارة علي</td>
+
+                    <td>1002</td>
+
+                    <td>الخامس</td>
+
+                    <td>🟢 نشط</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- الحصص -->
+
+<section id="lessons" class="page">
+
+    <div class="card">
+
+        <h2>📚 إضافة حصة</h2>
+
+        <input
+            type="text"
+            id="lessonName"
+            placeholder="اسم الدرس">
+
+        <input
+            type="date"
+            id="lessonDate">
+
+        <input
+            type="time"
+            id="lessonTime">
+
+        <input
+            type="text"
+            id="lessonLink"
+            placeholder="رابط الحصة">
+
+        <button class="btn"
+                onclick="addLesson()">
+
+            ➕ إضافة الحصة
+
+        </button>
+
+        <div id="lessonList"></div>
+
+    </div>
+
+</section>
+
+
+<!-- التقييم -->
+
+<section id="evaluation" class="page">
+
+    <div class="card">
+
+        <h2>⭐ تقييم الطالب</h2>
+
+        <select>
+
+            <option>اختر الطالب</option>
+
+            <option>محمد أحمد</option>
+
+            <option>سارة علي</option>
+
+        </select>
+
+
+        <p>الحضور:</p>
+
+        <select>
+
+            <option>⭐⭐⭐⭐⭐</option>
+
+            <option>⭐⭐⭐⭐</option>
+
+            <option>⭐⭐⭐</option>
+
+            <option>⭐⭐</option>
+
+            <option>⭐</option>
+
+        </select>
+
+
+        <p>المشاركة:</p>
+
+        <select>
+
+            <option>⭐⭐⭐⭐⭐</option>
+
+            <option>⭐⭐⭐⭐</option>
+
+            <option>⭐⭐⭐</option>
+
+            <option>⭐⭐</option>
+
+            <option>⭐</option>
+
+        </select>
+
+
+        <p>درجة الاختبار:</p>
+
+        <input
+            type="number"
+            placeholder="مثال: 9 من 10">
+
+        <button class="btn">
+
+            💾 حفظ التقييم
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- الاشتراكات -->
+
+<section id="payments" class="page">
+
+    <div class="card">
+
+        <h2>💰 متابعة الاشتراكات</h2>
+
+
+        <div class="payment">
+
+            <h3>محمد أحمد</h3>
+
+            <p>🟢 حالة الاشتراك: نشط</p>
+
+            <p>💵 قيمة الاشتراك: 500 جنيه</p>
+
+            <p>📅 آخر دفع: 1 سبتمبر</p>
+
+            <p>📅 موعد الدفع القادم: 1 أكتوبر</p>
+
+        </div>
+
+
+        <div class="payment">
+
+            <h3>سارة علي</h3>
+
+            <p>🟢 حالة الاشتراك: نشط</p>
+
+            <p>💵 قيمة الاشتراك: 500 جنيه</p>
+
+            <p>📅 آخر دفع: 5 سبتمبر</p>
+
+            <p>📅 موعد الدفع القادم: 5 أكتوبر</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>🌍 أكاديمية الدراسات الاجتماعية</p>
+
+    <p>© 2026</p>
+
+</footer>
+
+
+<script>
+
+
+/* التنقل بين الصفحات */
+
+function showPage(pageId) {
+
+    let pages =
+        document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+
+        page.classList.remove("active");
+
+    });
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+    window.scrollTo(0, 0);
+
+}
+
+
+/* إضافة طالب */
+
+function addStudent() {
+
+    let name =
+        document.getElementById("name").value;
+
+    let code =
+        document.getElementById("code").value;
+
+    let grade =
+        document.getElementById("grade").value;
+
+
+    if (name === "" ||
+        code === "" ||
+        grade === "اختر الصف") {
+
+        document.getElementById(
+            "studentMessage"
+        ).innerHTML =
+            "⚠️ من فضلك املئي البيانات";
+
+        return;
+
+    }
+
+
+    let table =
+        document.getElementById("studentTable");
+
+
+    let row =
+        table.insertRow();
+
+
+    row.insertCell(0).innerHTML = name;
+
+    row.insertCell(1).innerHTML = code;
+
+    row.insertCell(2).innerHTML = grade;
+
+    row.insertCell(3).innerHTML = "🟢 نشط";
+
+
+    document.getElementById(
+        "studentMessage"
+    ).innerHTML =
+        "🎉 تم إضافة الطالب بنجاح";
+
+}
+
+
+/* إضافة حصة */
+
+function addLesson() {
+
+    let name =
+        document.getElementById(
+            "lessonName"
+        ).value;
+
+    let date =
+        document.getElementById(
+            "lessonDate"
+        ).value;
+
+    let time =
+        document.getElementById(
+            "lessonTime"
+        ).value;
+
+    let link =
+        document.getElementById(
+            "lessonLink"
+        ).value;
+
+
+    if (name === "" ||
+        date === "" ||
+        time === "") {
+
+        alert("⚠️ املئي بيانات الحصة");
+
+        return;
+
+    }
+
+
+    let list =
+        document.getElementById(
+            "lessonList"
+        );
+
+
+    list.innerHTML += `
+
+        <div class="lesson">
+
+            <h3>📚 ${name}</h3>
+
+            <p>📅 التاريخ: ${date}</p>
+
+            <p>⏰ الوقت: ${time}</p>
+
+            <p>🔗 رابط الحصة: ${link}</p>
+
+        </div>
+
+    `;
+
+
+    alert("🎉 تم إضافة الحصة");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

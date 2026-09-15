@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بنك الأسئلة</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e3f2fd;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 750px;
+            margin: 30px auto;
+        }
+
+        .question {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .question h3 {
+            color: #1976d2;
+        }
+
+        label {
+            display: block;
+            background: #f5f9ff;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        label:hover {
+            background: #e3f2fd;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #2196f3;
+            color: white;
+            font-size: 19px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+
+        #result {
+            background: white;
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 18px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin: 25px;
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <h1>📝 بنك الأسئلة</h1>
+
+    <p>اختبر معلوماتك في الدراسات الاجتماعية</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- السؤال الأول -->
+
+    <div class="question">
+
+        <h3>1️⃣ ما عاصمة مصر؟</h3>
+
+        <label>
+            <input type="radio" name="q1" value="1">
+            القاهرة
+        </label>
+
+        <label>
+            <input type="radio" name="q1" value="0">
+            أسوان
+        </label>
+
+        <label>
+            <input type="radio" name="q1" value="0">
+            الإسكندرية
+        </label>
+
+    </div>
+
+
+    <!-- السؤال الثاني -->
+
+    <div class="question">
+
+        <h3>2️⃣ ما النهر الذي يمر في مصر؟</h3>
+
+        <label>
+            <input type="radio" name="q2" value="1">
+            نهر النيل
+        </label>
+
+        <label>
+            <input type="radio" name="q2" value="0">
+            نهر دجلة
+        </label>
+
+        <label>
+            <input type="radio" name="q2" value="0">
+            نهر الفرات
+        </label>
+
+    </div>
+
+
+    <!-- السؤال الثالث -->
+
+    <div class="question">
+
+        <h3>3️⃣ أين توجد أهرامات الجيزة؟</h3>
+
+        <label>
+            <input type="radio" name="q3" value="1">
+            الجيزة
+        </label>
+
+        <label>
+            <input type="radio" name="q3" value="0">
+            أسوان
+        </label>
+
+        <label>
+            <input type="radio" name="q3" value="0">
+            الأقصر
+        </label>
+
+    </div>
+
+
+    <!-- السؤال الرابع -->
+
+    <div class="question">
+
+        <h3>4️⃣ ما البحر الذي يحد مصر من الشمال؟</h3>
+
+        <label>
+            <input type="radio" name="q4" value="1">
+            البحر المتوسط
+        </label>
+
+        <label>
+            <input type="radio" name="q4" value="0">
+            البحر الأحمر
+        </label>
+
+        <label>
+            <input type="radio" name="q4" value="0">
+            بحر العرب
+        </label>
+
+    </div>
+
+
+    <!-- السؤال الخامس -->
+
+    <div class="question">
+
+        <h3>5️⃣ ما عاصمة المملكة العربية السعودية؟</h3>
+
+        <label>
+            <input type="radio" name="q5" value="1">
+            الرياض
+        </label>
+
+        <label>
+            <input type="radio" name="q5" value="0">
+            جدة
+        </label>
+
+        <label>
+            <input type="radio" name="q5" value="0">
+            مكة المكرمة
+        </label>
+
+    </div>
+
+
+    <button onclick="calculateScore()">
+        🎯 احسب النتيجة
+    </button>
+
+
+    <div id="result"></div>
+
+
+    <a href="student.html" class="back">
+        ⬅️ العودة إلى لوحة الطالب
+    </a>
+
+
+</div>
+
+
+<script>
+
+    function calculateScore() {
+
+        let score = 0;
+
+        let questions = [
+            "q1",
+            "q2",
+            "q3",
+            "q4",
+            "q5"
+        ];
+
+
+        questions.forEach(function(question) {
+
+            let answer =
+                document.querySelector(
+                    'input[name="' + question + '"]:checked'
+                );
+
+            if (answer) {
+
+                score += Number(answer.value);
+
+            }
+
+        });
+
+
+        let result =
+            document.getElementById("result");
+
+
+        result.innerHTML =
+            "🎉 نتيجتك: " +
+            score +
+            " من 5";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
