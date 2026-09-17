@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>فيديوهات الحصص - Reham Saleh Academy</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #dff5ff;
+}
+
+header {
+    background: #2196F3;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.add-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 10px #bbb;
+}
+
+.add-box h2 {
+    color: #2196F3;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #1976D2;
+}
+
+.video-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px #bbb;
+}
+
+.video-card h2 {
+    color: #2196F3;
+}
+
+.video-card p {
+    color: #555;
+}
+
+.video-box {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-box iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    left: 0;
+    top: 0;
+}
+
+.delete-btn {
+    background: #e53935;
+}
+
+.delete-btn:hover {
+    background: #c62828;
+}
+
+.back-btn {
+    background: #555;
+}
+
+#teacherArea {
+    display: block;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🎓 Reham Saleh Academy</h1>
+
+<p>📚 فيديوهات الحصص</p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- منطقة إضافة الفيديو للمعلمة -->
+
+<div class="add-box">
+
+<h2>👩‍🏫 إضافة حصة جديدة</h2>
+
+<input
+type="text"
+id="lessonTitle"
+placeholder="عنوان الحصة مثال: الدرس الأول - الموقع والاتجاهات">
+
+<input
+type="text"
+id="lessonUnit"
+placeholder="اسم الوحدة مثال: الوحدة الأولى">
+
+<input
+type="text"
+id="videoURL"
+placeholder="ضعي رابط فيديو الحصة هنا">
+
+<button onclick="addVideo()">
+➕ إضافة الفيديو
+</button>
+
+</div>
+
+
+<!-- مكان ظهور الفيديوهات -->
+
+<h2>🎥 حصص الأكاديمية</h2>
+
+<div id="videosContainer"></div>
+
+
+<button class="back-btn" onclick="goBack()">
+⬅️ العودة للأكاديمية
+</button>
+
+</div>
+
+
+<script>
+
+let videos = JSON.parse(localStorage.getItem("academyVideos")) || [];
+
+
+function addVideo() {
+
+    let title = document.getElementById("lessonTitle").value;
+
+    let unit = document.getElementById("lessonUnit").value;
+
+    let url = document.getElementById("videoURL").value;
+
+
+    if (title === "" || unit === "" || url === "") {
+
+        alert("من فضلك اكتبي عنوان الحصة والوحدة ورابط الفيديو");
+
+        return;
+    }
+
+
+    let video = {
+
+        title: title,
+
+        unit: unit,
+
+        url: url
+
+    };
+
+
+    videos.push(video);
+
+
+    localStorage.setItem(
+        "academyVideos",
+        JSON.stringify(videos)
+    );
+
+
+    document.getElementById("lessonTitle").value = "";
+
+    document.getElementById("lessonUnit").value = "";
+
+    document.getElementById("videoURL").value = "";
+
+
+    showVideos();
+
+    alert("تمت إضافة الحصة بنجاح 🎉");
+
+}
+
+
+function showVideos() {
+
+    let container =
+        document.getElementById("videosContainer");
+
+
+    container.innerHTML = "";
+
+
+    if (videos.length === 0) {
+
+        container.innerHTML =
+        "<p>لا توجد فيديوهات حتى الآن 📚</p>";
+
+        return;
+    }
+
+
+    videos.forEach((video, index) => {
+
+
+        let card = document.createElement("div");
+
+        card.className = "video-card";
+
+
+        card.innerHTML = `
+
+            <h2>🎥 ${video.title}</h2>
+
+            <p>📚 ${video.unit}</p>
+
+            <div class="video-box">
+
+                <iframe
+                    src="${convertURL(video.url)}"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <button
+                class="delete-btn"
+                onclick="deleteVideo(${index})">
+
+                🗑️ حذف الفيديو
+
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function convertURL(url) {
+
+    // إذا كان رابط YouTube
+
+    if (url.includes("youtube.com/watch?v=")) {
+
+        let id =
+        url.split("v=")[1].split("&")[0];
+
+        return "https://www.youtube.com/embed/" + id;
+
+    }
+
+
+    if (url.includes("youtu.be/")) {
+
+        let id =
+        url.split("youtu.be/")[1].split("?")[0];
+
+        return "https://www.youtube.com/embed/" + id;
+
+    }
+
+
+    // إذا كان رابط فيديو مباشر
+
+    return url;
+
+}
+
+
+function deleteVideo(index) {
+
+    if (
+        confirm("هل تريدين حذف هذا الفيديو؟")
+    ) {
+
+        videos.splice(index, 1);
+
+        localStorage.setItem(
+            "academyVideos",
+            JSON.stringify(videos)
+        );
+
+        showVideos();
+
+    }
+
+}
+
+
+function goBack() {
+
+    window.location.href = "index.html";
+
+}
+
+
+showVideos();
+
+</script>
+
+</body>
+
+</html>

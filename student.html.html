@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>لوحة الطالب</title>
+    <title>لوحة الطالب - Reham Saleh Academy</title>
 
     <style>
         body {
@@ -105,140 +106,410 @@
         .logout button {
             background: #f44336;
         }
+
+        .student-info {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .student-info p {
+            margin: 10px 0;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+        }
     </style>
+
 </head>
 
 <body>
 
 <header>
+
     <h1>🎓 لوحة الطالب</h1>
-    <p>أهلاً بك في أكاديمية الدراسات الاجتماعية</p>
+
+    <p>أهلاً بك في Reham Saleh Academy</p>
+
 </header>
 
-<div class="container">
+
+<div id="loading">
+
+    ⏳ جاري تحميل بيانات الطالب...
+
+</div>
+
+
+<div class="container" id="studentPage" style="display:none;">
+
 
     <!-- الترحيب -->
+
     <div class="welcome">
-        <h2>👋 أهلاً يا <span id="studentName">محمد</span></h2>
-        <p>نتمنى لك رحلة تعليمية ممتعة ومفيدة 🌟</p>
+
+        <h2>
+            👋 أهلاً يا
+            <span id="studentName"></span>
+        </h2>
+
+        <p>
+            نتمنى لك رحلة تعليمية ممتعة ومفيدة 🌟
+        </p>
+
     </div>
 
+
+    <!-- بيانات الطالب -->
+
+    <div class="student-info">
+
+        <h2>👨‍🎓 بيانات الطالب</h2>
+
+        <p>
+            <strong>الاسم:</strong>
+            <span id="infoName"></span>
+        </p>
+
+        <p>
+            <strong>الصف:</strong>
+            <span id="infoGrade"></span>
+        </p>
+
+        <p>
+            <strong>البريد الإلكتروني:</strong>
+            <span id="infoEmail"></span>
+        </p>
+
+        <p>
+            <strong>رقم الهاتف:</strong>
+            <span id="infoPhone"></span>
+        </p>
+
+    </div>
+
+
     <!-- الحصة القادمة -->
+
     <div class="lesson">
+
         <h2>📅 الحصة القادمة</h2>
-        <p><strong>المادة:</strong> الدراسات الاجتماعية</p>
-        <p><strong>الدرس:</strong> موقع الوطن العربي</p>
-        <p><strong>اليوم:</strong> الأحد</p>
-        <p><strong>الساعة:</strong> 6:00 مساءً</p>
+
+        <p>
+            <strong>المادة:</strong>
+            الدراسات الاجتماعية
+        </p>
+
+        <p>
+            <strong>الدرس:</strong>
+            موقع الوطن العربي
+        </p>
+
+        <p>
+            <strong>اليوم:</strong>
+            الأحد
+        </p>
+
+        <p>
+            <strong>الساعة:</strong>
+            6:00 مساءً
+        </p>
 
         <button onclick="window.location.href='lesson.html'">
             🎥 دخول الحصة
         </button>
+
     </div>
 
+
     <!-- الصفحات -->
+
     <div class="cards">
 
+
         <div class="card">
+
             <div class="icon">📚</div>
+
             <h3>الدروس</h3>
+
             <p>شاهد الدروس والوحدات</p>
+
             <button onclick="window.location.href='lessons.html'">
                 فتح الدروس
             </button>
+
         </div>
 
+
         <div class="card">
+
             <div class="icon">📝</div>
+
             <h3>الاختبارات</h3>
+
             <p>اختبر معلوماتك</p>
+
             <button onclick="window.location.href='questions.html'">
                 بدء الاختبار
             </button>
+
         </div>
 
+
         <div class="card">
+
             <div class="icon">🟢</div>
+
             <h3>الحضور</h3>
+
             <p>تابع سجل حضورك</p>
+
             <button onclick="window.location.href='attendance.html'">
                 عرض الحضور
             </button>
+
         </div>
 
+
         <div class="card">
+
             <div class="icon">⭐</div>
+
             <h3>التقييم</h3>
+
             <p>قيّم الحصة والمعلم</p>
+
             <button onclick="window.location.href='evaluation.html'">
                 التقييم
             </button>
+
         </div>
 
+
         <div class="card">
+
             <div class="icon">💳</div>
+
             <h3>الاشتراك</h3>
+
             <p>تابع اشتراكك ومواعيد الدفع</p>
+
             <button onclick="window.location.href='subscription.html'">
                 الاشتراك
             </button>
+
         </div>
 
+
         <div class="card">
+
             <div class="icon">📩</div>
+
             <h3>التواصل</h3>
+
             <p>تواصل مع المعلم</p>
+
             <button onclick="window.location.href='connect.html'">
                 تواصل معنا
             </button>
+
         </div>
 
     </div>
 
+
     <!-- آخر نتيجة -->
+
     <div class="result">
+
         <h2>🏆 آخر نتيجة</h2>
+
         <p>اختبار الوحدة الأولى</p>
+
         <h2>⭐ 9 / 10</h2>
+
     </div>
+
 
     <!-- الاشتراك -->
+
     <div class="subscription">
+
         <h2>💳 حالة الاشتراك</h2>
-        <p>الحالة: ✅ نشط</p>
-        <p>عدد الحصص المتبقية: <strong>8 حصص</strong></p>
-        <p>موعد الدفع القادم: 1 أكتوبر 2026</p>
+
+        <p>
+            الحالة: ✅ نشط
+        </p>
+
+        <p>
+            عدد الحصص المتبقية:
+            <strong>8 حصص</strong>
+        </p>
+
+        <p>
+            موعد الدفع القادم:
+            1 أكتوبر 2026
+        </p>
+
     </div>
 
+
     <!-- تسجيل الخروج -->
+
     <div class="logout">
-        <button onclick="logout()">
+
+        <button id="logoutBtn">
             🚪 تسجيل الخروج
         </button>
+
     </div>
 
 </div>
 
-<script>
 
-    // إظهار اسم الطالب المسجل
-    let savedName = localStorage.getItem("studentName");
+<script type="module">
 
-    if (savedName) {
-        document.getElementById("studentName").textContent = savedName;
-    }
+    import { auth, db } from "./firebase-config.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+        doc,
+        getDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    const loading =
+        document.getElementById("loading");
+
+    const studentPage =
+        document.getElementById("studentPage");
+
+
+    // التأكد من تسجيل الدخول
+
+    onAuthStateChanged(auth, async function(user) {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        try {
+
+            // الحصول على بيانات الطالب
+
+            const studentRef =
+                doc(db, "students", user.uid);
+
+            const studentSnap =
+                await getDoc(studentRef);
+
+
+            if (studentSnap.exists()) {
+
+                const data =
+                    studentSnap.data();
+
+
+                // الاسم
+
+                document.getElementById(
+                    "studentName"
+                ).textContent =
+                    data.name || "الطالب";
+
+
+                document.getElementById(
+                    "infoName"
+                ).textContent =
+                    data.name || "-";
+
+
+                // الصف
+
+                document.getElementById(
+                    "infoGrade"
+                ).textContent =
+                    data.grade || "-";
+
+
+                // البريد
+
+                document.getElementById(
+                    "infoEmail"
+                ).textContent =
+                    data.email || user.email || "-";
+
+
+                // الهاتف
+
+                document.getElementById(
+                    "infoPhone"
+                ).textContent =
+                    data.phone || "-";
+
+            }
+
+
+            loading.style.display = "none";
+
+            studentPage.style.display =
+                "block";
+
+
+        } catch (error) {
+
+            console.log(error);
+
+            loading.textContent =
+                "❌ حدث خطأ أثناء تحميل بيانات الطالب";
+
+        }
+
+    });
+
 
     // تسجيل الخروج
-    function logout() {
 
-        localStorage.removeItem("studentName");
-        localStorage.removeItem("studentGrade");
-        localStorage.removeItem("studentUsername");
+    document.getElementById(
+        "logoutBtn"
+    ).addEventListener("click", async function() {
 
-        window.location.href = "index.html";
-    }
+        try {
+
+            await signOut(auth);
+
+            window.location.href =
+                "index.html";
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert(
+                "حدث خطأ أثناء تسجيل الخروج"
+            );
+
+        }
+
+    });
 
 </script>
 
 </body>
+
 </html>

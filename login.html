@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>تسجيل دخول الطالب</title>
+    <title>تسجيل دخول الطالب - Reham Saleh Academy</title>
 
     <style>
         body {
@@ -82,141 +82,205 @@
             background: #1976D2;
         }
 
+        button:disabled {
+            background: #90caf9;
+            cursor: not-allowed;
+        }
+
         #message {
             text-align: center;
             margin-top: 15px;
             font-weight: bold;
         }
 
-        .register {
+        .newstudent {
             text-align: center;
             margin-top: 20px;
         }
 
-        .register a {
+        .newstudent a {
             color: #2196F3;
             text-decoration: none;
             font-weight: bold;
         }
     </style>
+
 </head>
 
 <body>
 
-    <header>
-        <h1>🎓 أكاديمية الدراسات الاجتماعية</h1>
-        <p>تسجيل دخول الطالب</p>
-    </header>
+<header>
 
-    <div class="box">
+    <h1>🎓 Reham Saleh Academy</h1>
 
-        <h2>🔐 أهلاً بك</h2>
+    <p>تسجيل دخول الطالب</p>
 
-        <label for="username">اسم المستخدم</label>
+</header>
 
-        <input
-            type="text"
-            id="username"
-            placeholder="اكتب اسم المستخدم"
-        >
 
-        <label for="password">كلمة المرور</label>
+<div class="box">
 
-        <input
-            type="password"
-            id="password"
-            placeholder="اكتب كلمة المرور"
-        >
+    <h2>🔐 أهلاً بك</h2>
 
-        <button onclick="loginStudent()">
-            🚀 تسجيل الدخول
-        </button>
 
-        <div id="message"></div>
+    <label for="email">
+        البريد الإلكتروني
+    </label>
 
-        <div class="newstudent">
-            ليس لديك حساب؟
-            <a href="newstudent.html">📝 إنشاء حساب جديد</a>
-        </div>
+    <input
+        type="email"
+        id="email"
+        placeholder="example@gmail.com"
+    >
+
+
+    <label for="password">
+        كلمة المرور
+    </label>
+
+    <input
+        type="password"
+        id="password"
+        placeholder="اكتب كلمة المرور"
+    >
+
+
+    <button id="loginBtn">
+
+        🚀 تسجيل الدخول
+
+    </button>
+
+
+    <div id="message"></div>
+
+
+    <div class="newstudent">
+
+        ليس لديك حساب؟
+
+        <a href="newstudent.html">
+            📝 إنشاء حساب جديد
+        </a>
 
     </div>
 
-
-    <script>
-
-        function loginStudent() {
-
-            // الحصول على البيانات التي كتبها الطالب
-            let username = document.getElementById("username").value.trim();
-            let password = document.getElementById("password").value;
-
-            // مكان ظهور الرسالة
-            let message = document.getElementById("message");
+</div>
 
 
-            // التأكد أن البيانات ليست فارغة
-            if (username === "" || password === "") {
+<script type="module">
 
-                message.textContent =
-                    "⚠️ من فضلك اكتب اسم المستخدم وكلمة المرور";
+    import { auth } from "./firebase-config.js";
 
-                message.style.color = "red";
-
-                return;
-            }
+    import {
+        signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-            // الحصول على بيانات الحساب الذي تم إنشاؤه
-            let savedUsername =
-                localStorage.getItem("studentUsername");
+    const loginBtn =
+        document.getElementById("loginBtn");
 
-            let savedPassword =
-                localStorage.getItem("studentPassword");
-
-
-            // التأكد أن هناك حساباً مسجلاً
-            if (savedUsername === null || savedPassword === null) {
-
-                message.textContent =
-                    "⚠️ لا يوجد حساب مسجل. قم بإنشاء حساب أولاً.";
-
-                message.style.color = "red";
-
-                return;
-            }
+    const message =
+        document.getElementById("message");
 
 
-            // مقارنة البيانات
+    loginBtn.addEventListener("click", async function () {
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+
+        // التأكد من البيانات
+
+        if (email === "" || password === "") {
+
+            message.textContent =
+                "⚠️ من فضلك اكتب البريد الإلكتروني وكلمة المرور";
+
+            message.style.color = "red";
+
+            return;
+        }
+
+
+        loginBtn.disabled = true;
+
+        loginBtn.textContent =
+            "⏳ جاري تسجيل الدخول...";
+
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+            message.textContent =
+                "🎉 تم تسجيل الدخول بنجاح!";
+
+            message.style.color = "green";
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "student.html";
+
+            }, 1000);
+
+
+        } catch (error) {
+
+            console.log(error);
+
+
             if (
-                username === savedUsername &&
-                password === savedPassword
+                error.code ===
+                "auth/invalid-credential"
             ) {
 
                 message.textContent =
-                    "🎉 تم تسجيل الدخول بنجاح!";
+                    "❌ البريد الإلكتروني أو كلمة المرور غير صحيحة";
 
-                message.style.color = "green";
+            }
 
-
-                // الانتقال إلى صفحة الطالب
-                setTimeout(function () {
-
-                    window.location.href = "student.html";
-
-                }, 1000);
-
-
-            } else {
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
 
                 message.textContent =
-                    "❌ اسم المستخدم أو كلمة المرور غير صحيحة";
+                    "❌ لا يوجد حساب بهذا البريد الإلكتروني";
 
-                message.style.color = "red";
             }
+
+            else {
+
+                message.textContent =
+                    "❌ حدث خطأ أثناء تسجيل الدخول";
+
+            }
+
+
+            message.style.color = "red";
+
+            loginBtn.disabled = false;
+
+            loginBtn.textContent =
+                "🚀 تسجيل الدخول";
 
         }
 
-    </script>
+    });
+
+</script>
+
 
 </body>
 

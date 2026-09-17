@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>إدارة الطلاب</title>
+    <title>Reham Saleh Academy - الإدارة</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,7 +22,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 25px auto;
             padding: 15px;
         }
@@ -33,31 +32,57 @@
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
 
         input,
         select {
             width: 100%;
             box-sizing: border-box;
-            padding: 12px;
+            padding: 13px;
             margin: 8px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         button {
+            width: 100%;
             background: #2196F3;
             color: white;
             border: none;
-            padding: 10px 18px;
+            padding: 13px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 16px;
+            margin-top: 8px;
         }
 
         button:hover {
             background: #1976D2;
+        }
+
+        .logout {
+            background: #e53935;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #loginMessage,
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #status {
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         .table-container {
@@ -67,8 +92,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            min-width: 650px;
+            min-width: 700px;
         }
 
         th,
@@ -83,10 +107,6 @@
             color: white;
         }
 
-        tr:nth-child(even) {
-            background: #f5fbff;
-        }
-
         .active {
             color: green;
             font-weight: bold;
@@ -96,250 +116,502 @@
             color: red;
             font-weight: bold;
         }
-
-        .back {
-            text-align: center;
-            margin: 25px 0;
-        }
-
-        .back button {
-            background: #555;
-        }
-
-        #message {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
     </style>
-
 </head>
 
 <body>
 
 <header>
-
-    <h1>👨‍🎓 إدارة الطلاب</h1>
-
-    <p>أكاديمية الدراسات الاجتماعية</p>
-
+    <h1>👩‍💼 Reham Saleh Academy</h1>
+    <p>لوحة إدارة الأكاديمية</p>
 </header>
 
 <div class="container">
 
-    <!-- إضافة طالب -->
+    <div id="status">
+        ⏳ جاري تشغيل الصفحة...
+    </div>
 
-    <div class="box">
 
-        <h2>➕ إضافة طالب جديد</h2>
+    <!-- تسجيل الدخول -->
 
-        <input
-            type="text"
-            id="studentName"
-            placeholder="اسم الطالب">
+    <div class="box" id="loginBox">
 
-        <input
-            type="text"
-            id="studentGrade"
-            placeholder="الصف الدراسي">
+        <h2>🔐 دخول المديرة</h2>
 
         <input
-            type="text"
-            id="studentPhone"
-            placeholder="رقم الهاتف">
+            type="email"
+            id="email"
+            placeholder="البريد الإلكتروني"
+            value="ro8084733@gmail.com">
 
-        <select id="subscription">
+        <input
+            type="password"
+            id="password"
+            placeholder="كلمة المرور">
 
-            <option value="">اختر حالة الاشتراك</option>
-
-            <option value="نشط">نشط</option>
-
-            <option value="منتهي">منتهي</option>
-
-        </select>
-
-        <button onclick="addStudent()">
-            ✅ إضافة الطالب
+        <button type="button" id="loginButton">
+            🔑 تسجيل الدخول
         </button>
 
-        <div id="message"></div>
+        <div id="loginMessage"></div>
 
     </div>
 
 
-    <!-- قائمة الطلاب -->
+    <!-- لوحة المديرة -->
 
-    <div class="box">
+    <div id="adminPanel" class="hidden">
 
-        <h2>📋 قائمة الطلاب</h2>
+        <div class="box">
 
-        <div class="table-container">
+            <h2>🎉 أهلاً بكِ في لوحة الإدارة</h2>
 
-            <table>
+            <p>
+                تم تسجيل دخول المديرة بنجاح.
+            </p>
 
-                <thead>
-
-                    <tr>
-
-                        <th>الاسم</th>
-
-                        <th>الصف</th>
-
-                        <th>الهاتف</th>
-
-                        <th>الاشتراك</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="studentsTable">
-
-                    <tr>
-
-                        <td>محمد أحمد</td>
-
-                        <td>الصف السادس</td>
-
-                        <td>01000000000</td>
-
-                        <td class="active">نشط</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>سارة علي</td>
-
-                        <td>الصف الخامس</td>
-
-                        <td>01111111111</td>
-
-                        <td class="active">نشط</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>أحمد محمود</td>
-
-                        <td>الصف الرابع</td>
-
-                        <td>01222222222</td>
-
-                        <td class="expired">منتهي</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
+            <button type="button" id="logoutButton" class="logout">
+                🚪 تسجيل الخروج
+            </button>
 
         </div>
 
-    </div>
+
+        <!-- إضافة طالب -->
+
+        <div class="box">
+
+            <h2>➕ إضافة طالب</h2>
+
+            <input
+                type="text"
+                id="studentName"
+                placeholder="اسم الطالب">
+
+            <input
+                type="text"
+                id="studentGrade"
+                placeholder="الصف الدراسي">
+
+            <input
+                type="text"
+                id="studentPhone"
+                placeholder="رقم الهاتف">
+
+            <select id="subscription">
+
+                <option value="">
+                    اختر حالة الاشتراك
+                </option>
+
+                <option value="نشط">
+                    نشط
+                </option>
+
+                <option value="منتهي">
+                    منتهي
+                </option>
+
+            </select>
+
+            <button type="button" id="addStudentButton">
+                ✅ إضافة الطالب
+            </button>
+
+            <div id="message"></div>
+
+        </div>
 
 
-    <!-- العودة -->
+        <!-- قائمة الطلاب -->
 
-    <div class="back">
+        <div class="box">
 
-        <button onclick="window.location.href='admin.html'">
+            <h2>📋 الطلاب المسجلون</h2>
 
-            ↩️ العودة للوحة المعلم
+            <div class="table-container">
 
-        </button>
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الصف</th>
+                            <th>الهاتف</th>
+                            <th>البريد</th>
+                            <th>الاشتراك</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="studentsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<script>
+<script type="module">
 
-function addStudent() {
-
-    let name =
-        document.getElementById("studentName").value.trim();
-
-    let grade =
-        document.getElementById("studentGrade").value.trim();
-
-    let phone =
-        document.getElementById("studentPhone").value.trim();
-
-    let subscription =
-        document.getElementById("subscription").value;
-
-    let message =
-        document.getElementById("message");
+    // اختبار الصفحة
+    document.getElementById("status").textContent =
+        "✅ الصفحة تعمل";
 
 
-    if (
-        name === "" ||
-        grade === "" ||
-        phone === "" ||
-        subscription === ""
-    ) {
+    // استيراد Firebase
+    import { auth, db }
+    from "./firebase-config.js";
 
-        message.textContent =
-            "⚠️ من فضلك املأ جميع البيانات";
 
-        message.style.color = "red";
+    import {
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        return;
+
+    import {
+        collection,
+        getDocs,
+        addDoc,
+        serverTimestamp,
+        doc,
+        getDoc
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    document.getElementById("status").textContent =
+        "✅ Firebase يعمل";
+
+
+    const loginBox =
+        document.getElementById("loginBox");
+
+    const adminPanel =
+        document.getElementById("adminPanel");
+
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+
+    // =========================
+    // تسجيل دخول المديرة
+    // =========================
+
+    document
+        .getElementById("loginButton")
+        .addEventListener("click", async function () {
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            if (email === "" || password === "") {
+
+                loginMessage.textContent =
+                    "⚠️ اكتبي البريد وكلمة المرور";
+
+                loginMessage.style.color = "red";
+
+                return;
+            }
+
+
+            loginMessage.textContent =
+                "⏳ جاري تسجيل الدخول...";
+
+            loginMessage.style.color = "#2196F3";
+
+
+            try {
+
+                const result =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                // التأكد من وجود حساب المديرة
+
+                const adminRef =
+                    doc(
+                        db,
+                        "admins",
+                        result.user.uid
+                    );
+
+
+                const adminDoc =
+                    await getDoc(adminRef);
+
+
+                if (!adminDoc.exists()) {
+
+                    loginMessage.textContent =
+                        "❌ هذا الحساب ليس حساب مديرة";
+
+                    loginMessage.style.color = "red";
+
+                    await signOut(auth);
+
+                    return;
+                }
+
+
+                loginMessage.textContent =
+                    "✅ تم تسجيل الدخول بنجاح";
+
+                loginMessage.style.color = "green";
+
+
+                loginBox.classList.add("hidden");
+
+                adminPanel.classList.remove("hidden");
+
+                loadStudents();
+
+
+            } catch (error) {
+
+                console.log(error);
+
+                loginMessage.style.color = "red";
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    loginMessage.textContent =
+                        "❌ البريد أو كلمة المرور غير صحيحة";
+
+                } else {
+
+                    loginMessage.textContent =
+                        "❌ حدث خطأ في تسجيل الدخول";
+
+                }
+
+            }
+
+        });
+
+
+    // =========================
+    // تحميل الطلاب
+    // =========================
+
+    async function loadStudents() {
+
+        const table =
+            document.getElementById("studentsTable");
+
+
+        table.innerHTML = "";
+
+
+        try {
+
+            const snapshot =
+                await getDocs(
+                    collection(db, "students")
+                );
+
+
+            if (snapshot.empty) {
+
+                table.innerHTML =
+                    `<tr>
+                        <td colspan="5">
+                            لا يوجد طلاب حتى الآن
+                        </td>
+                    </tr>`;
+
+                return;
+            }
+
+
+            snapshot.forEach(function (item) {
+
+                const student =
+                    item.data();
+
+
+                const row =
+                    table.insertRow();
+
+
+                row.insertCell(0).textContent =
+                    student.name || "—";
+
+                row.insertCell(1).textContent =
+                    student.grade || "—";
+
+                row.insertCell(2).textContent =
+                    student.phone || "—";
+
+                row.insertCell(3).textContent =
+                    student.email || "—";
+
+
+                const status =
+                    student.subscription || "نشط";
+
+
+                const cell =
+                    row.insertCell(4);
+
+
+                cell.textContent =
+                    status;
+
+
+                if (status === "نشط") {
+
+                    cell.className = "active";
+
+                } else {
+
+                    cell.className = "expired";
+
+                }
+
+            });
+
+
+        } catch (error) {
+
+            console.log(error);
+
+            table.innerHTML =
+                `<tr>
+                    <td colspan="5">
+                        ❌ حدث خطأ في تحميل الطلاب
+                    </td>
+                </tr>`;
+
+        }
 
     }
 
 
-    let table =
-        document.getElementById("studentsTable");
+    // =========================
+    // إضافة طالب
+    // =========================
+
+    document
+        .getElementById("addStudentButton")
+        .addEventListener("click", async function () {
+
+            const name =
+                document.getElementById("studentName").value.trim();
+
+            const grade =
+                document.getElementById("studentGrade").value.trim();
+
+            const phone =
+                document.getElementById("studentPhone").value.trim();
+
+            const subscription =
+                document.getElementById("subscription").value;
 
 
-    let row =
-        table.insertRow();
+            const message =
+                document.getElementById("message");
 
 
-    row.insertCell(0).textContent = name;
+            if (
+                name === "" ||
+                grade === "" ||
+                phone === "" ||
+                subscription === ""
+            ) {
 
-    row.insertCell(1).textContent = grade;
+                message.textContent =
+                    "⚠️ املئي جميع البيانات";
 
-    row.insertCell(2).textContent = phone;
+                message.style.color = "red";
 
-
-    let statusCell =
-        row.insertCell(3);
-
-    statusCell.textContent =
-        subscription;
-
-
-    if (subscription === "نشط") {
-
-        statusCell.className = "active";
-
-    } else {
-
-        statusCell.className = "expired";
-
-    }
+                return;
+            }
 
 
-    message.textContent =
-        "🎉 تم إضافة الطالب بنجاح";
+            try {
 
-    message.style.color = "green";
+                await addDoc(
+                    collection(db, "students"),
+                    {
+                        name: name,
+                        grade: grade,
+                        phone: phone,
+                        subscription: subscription,
+                        createdAt: serverTimestamp()
+                    }
+                );
 
 
-    document.getElementById("studentName").value = "";
+                message.textContent =
+                    "🎉 تم إضافة الطالب";
 
-    document.getElementById("studentGrade").value = "";
+                message.style.color = "green";
 
-    document.getElementById("studentPhone").value = "";
 
-    document.getElementById("subscription").value = "";
+                document.getElementById("studentName").value = "";
 
-}
+                document.getElementById("studentGrade").value = "";
+
+                document.getElementById("studentPhone").value = "";
+
+                document.getElementById("subscription").value = "";
+
+
+                loadStudents();
+
+
+            } catch (error) {
+
+                console.log(error);
+
+                message.textContent =
+                    "❌ لم يتم إضافة الطالب";
+
+                message.style.color = "red";
+
+            }
+
+        });
+
+
+    // =========================
+    // تسجيل الخروج
+    // =========================
+
+    document
+        .getElementById("logoutButton")
+        .addEventListener("click", async function () {
+
+            await signOut(auth);
+
+            window.location.reload();
+
+        });
 
 </script>
 

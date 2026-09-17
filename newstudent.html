@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>إنشاء حساب جديد</title>
+    <title>إنشاء حساب جديد - Reham Saleh Academy</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             background: #eaf7ff;
@@ -95,225 +94,215 @@
             text-decoration: none;
             font-weight: bold;
         }
-
     </style>
-
 </head>
 
 <body>
 
 <header>
-
-    <h1>🎓 أكاديمية الدراسات الاجتماعية</h1>
-
+    <h1>🎓 Reham Saleh Academy</h1>
     <p>إنشاء حساب طالب جديد</p>
-
 </header>
-
 
 <div class="box">
 
     <h2>📝 إنشاء حساب جديد</h2>
 
-
     <label for="name">اسم الطالب</label>
-
-    <input
-        type="text"
-        id="name"
-        placeholder="اكتب اسم الطالب"
-    >
-
+    <input type="text" id="name" placeholder="اكتب اسم الطالب">
 
     <label for="grade">الصف الدراسي</label>
-
-    <input
-        type="text"
-        id="grade"
-        placeholder="مثال: الصف السادس"
-    >
-
+    <input type="text" id="grade" placeholder="مثال: الصف السادس">
 
     <label for="phone">رقم الهاتف</label>
+    <input type="text" id="phone" placeholder="اكتب رقم الهاتف">
 
-    <input
-        type="text"
-        id="phone"
-        placeholder="اكتب رقم الهاتف"
-    >
-
-
-    <label for="username">اسم المستخدم</label>
-
-    <input
-        type="text"
-        id="username"
-        placeholder="اختار اسم مستخدم"
-    >
-
+    <label for="email">البريد الإلكتروني</label>
+    <input type="email" id="email" placeholder="example@gmail.com">
 
     <label for="password">كلمة المرور</label>
-
-    <input
-        type="password"
-        id="password"
-        placeholder="اكتب كلمة المرور"
-    >
-
+    <input type="password" id="password" placeholder="اكتب كلمة المرور">
 
     <label for="confirmPassword">تأكيد كلمة المرور</label>
+    <input type="password" id="confirmPassword" placeholder="أعد كتابة كلمة المرور">
 
-    <input
-        type="password"
-        id="confirmPassword"
-        placeholder="أعد كتابة كلمة المرور"
-    >
-
-
-    <button onclick="createAccount()">
+    <button id="createBtn">
         ✅ إنشاء الحساب
     </button>
 
-
     <div id="message"></div>
 
-
     <div class="login">
-
         لديك حساب بالفعل؟
-
-        <a href="login.html">
-            🔐 تسجيل الدخول
-        </a>
-
+        <a href="login.html">🔐 تسجيل الدخول</a>
     </div>
 
 </div>
 
 
-<script>
+<script type="module">
 
-function createAccount() {
+    import { auth, db } from "./firebase-config.js";
 
-    let name =
-        document.getElementById("name").value.trim();
+    import {
+        createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    let grade =
-        document.getElementById("grade").value.trim();
-
-    let phone =
-        document.getElementById("phone").value.trim();
-
-    let username =
-        document.getElementById("username").value.trim();
-
-    let password =
-        document.getElementById("password").value;
-
-    let confirmPassword =
-        document.getElementById("confirmPassword").value;
-
-    let message =
-        document.getElementById("message");
+    import {
+        doc,
+        setDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-    // التأكد من ملء جميع البيانات
-
-    if (
-        name === "" ||
-        grade === "" ||
-        phone === "" ||
-        username === "" ||
-        password === "" ||
-        confirmPassword === ""
-    ) {
-
-        message.textContent =
-            "⚠️ من فضلك املأ جميع البيانات";
-
-        message.style.color = "red";
-
-        return;
-    }
+    const createBtn = document.getElementById("createBtn");
+    const message = document.getElementById("message");
 
 
-    // التأكد من تطابق كلمة المرور
+    createBtn.addEventListener("click", async function () {
 
-    if (password !== confirmPassword) {
+        const name =
+            document.getElementById("name").value.trim();
 
-        message.textContent =
-            "❌ كلمتا المرور غير متطابقتين";
+        const grade =
+            document.getElementById("grade").value.trim();
 
-        message.style.color = "red";
+        const phone =
+            document.getElementById("phone").value.trim();
 
-        return;
-    }
+        const email =
+            document.getElementById("email").value.trim();
 
+        const password =
+            document.getElementById("password").value;
 
-    // حفظ بيانات الطالب
-
-    localStorage.setItem(
-        "studentName",
-        name
-    );
-
-    localStorage.setItem(
-        "studentGrade",
-        grade
-    );
-
-    localStorage.setItem(
-        "studentPhone",
-        phone
-    );
-
-    localStorage.setItem(
-        "studentUsername",
-        username
-    );
-
-    localStorage.setItem(
-        "studentPassword",
-        password
-    );
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
 
 
-    // رسالة النجاح
+        // التأكد من البيانات
 
-    message.textContent =
-        "🎉 تم إنشاء الحساب بنجاح!";
+        if (
+            name === "" ||
+            grade === "" ||
+            phone === "" ||
+            email === "" ||
+            password === "" ||
+            confirmPassword === ""
+        ) {
 
-    message.style.color = "green";
+            message.textContent =
+                "⚠️ من فضلك املأ جميع البيانات";
+
+            message.style.color = "red";
+
+            return;
+        }
 
 
-    // الانتقال إلى تسجيل الدخول
+        // التأكد من تطابق كلمة المرور
 
-    setTimeout(function() {
+        if (password !== confirmPassword) {
 
-        window.location.href = "login.html";
+            message.textContent =
+                "❌ كلمتا المرور غير متطابقتين";
 
-    }, 1000);
+            message.style.color = "red";
 
-}
+            return;
+        }
+
+
+        // إنشاء الحساب في Firebase
+
+        createBtn.disabled = true;
+        createBtn.textContent = "⏳ جاري إنشاء الحساب...";
+
+
+        try {
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user = userCredential.user;
+
+
+            // حفظ بيانات الطالب في Firestore
+
+            await setDoc(
+                doc(db, "students", user.uid),
+                {
+                    name: name,
+                    grade: grade,
+                    phone: phone,
+                    email: email,
+                    uid: user.uid,
+                    createdAt: serverTimestamp()
+                }
+            );
+
+
+            message.textContent =
+                "🎉 تم إنشاء الحساب بنجاح!";
+
+            message.style.color = "green";
+
+
+            setTimeout(function () {
+
+                window.location.href = "login.html";
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.log(error);
+
+
+            if (error.code === "auth/email-already-in-use") {
+
+                message.textContent =
+                    "❌ هذا البريد الإلكتروني مسجل بالفعل";
+
+            }
+
+            else if (error.code === "auth/weak-password") {
+
+                message.textContent =
+                    "❌ كلمة المرور يجب أن تكون أقوى";
+
+            }
+
+            else if (error.code === "auth/invalid-email") {
+
+                message.textContent =
+                    "❌ البريد الإلكتروني غير صحيح";
+
+            }
+
+            else {
+
+                message.textContent =
+                    "❌ حدث خطأ أثناء إنشاء الحساب";
+
+            }
+
+            message.style.color = "red";
+
+            createBtn.disabled = false;
+            createBtn.textContent = "✅ إنشاء الحساب";
+
+        }
+
+    });
 
 </script>
 
-
 </body>
-
 </html>
-
-بعد إنشاء الملف
-
-في "index.html" غيّري الرابطين الخاصين بإنشاء الحساب إلى:
-
-<a href="newstudent.html">📝 إنشاء حساب</a>
-
-وفي "login.html":
-
-<a href="newstudent.html">📝 إنشاء حساب جديد</a>
-
-وبكده يبقى عندنا:
-
-index → newstudent → login → student
-

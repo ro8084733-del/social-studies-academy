@@ -62,10 +62,25 @@
             color: white;
             font-size: 19px;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         button:hover {
             background: #1976d2;
+        }
+
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        #restartButton {
+            background: #4caf50;
+            display: none;
+        }
+
+        #restartButton:hover {
+            background: #388e3c;
         }
 
         #result {
@@ -226,12 +241,23 @@
     </div>
 
 
-    <button onclick="calculateScore()">
+    <!-- زر حساب النتيجة -->
+
+    <button id="submitButton" onclick="calculateScore()">
         🎯 احسب النتيجة
     </button>
 
 
+    <!-- النتيجة -->
+
     <div id="result"></div>
+
+
+    <!-- إعادة حل الامتحان -->
+
+    <button id="restartButton" onclick="restartQuiz()">
+        🔄 إعادة حل الامتحان
+    </button>
 
 
     <a href="student.html" class="back">
@@ -244,18 +270,51 @@
 
 <script>
 
+    // أسماء الأسئلة
+
+    let questions = [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+    ];
+
+
+    // عند فتح الصفحة
+    // نتحقق هل الامتحان تم تسليمه من قبل
+
+    window.onload = function() {
+
+        let submitted =
+            localStorage.getItem("examSubmitted");
+
+        if (submitted === "true") {
+
+            showSubmittedResult();
+
+        }
+
+    };
+
+
+    // حساب النتيجة
+
     function calculateScore() {
+
+        // منع إعادة الحساب
+
+        if (localStorage.getItem("examSubmitted") === "true") {
+
+            return;
+
+        }
+
 
         let score = 0;
 
-        let questions = [
-            "q1",
-            "q2",
-            "q3",
-            "q4",
-            "q5"
-        ];
 
+        // حساب الإجابات
 
         questions.forEach(function(question) {
 
@@ -263,6 +322,7 @@
                 document.querySelector(
                     'input[name="' + question + '"]:checked'
                 );
+
 
             if (answer) {
 
@@ -273,14 +333,134 @@
         });
 
 
-        let result =
-            document.getElementById("result");
+        // حفظ حالة تسليم الامتحان
+
+        localStorage.setItem("examSubmitted", "true");
+
+        localStorage.setItem("examScore", score);
 
 
-        result.innerHTML =
+        // عرض النتيجة
+
+        document.getElementById("result").innerHTML =
             "🎉 نتيجتك: " +
             score +
             " من 5";
+
+
+        // قفل الاختيارات
+
+        lockQuiz();
+
+
+        // إخفاء زر الحساب
+
+        document.getElementById("submitButton").disabled = true;
+
+
+        // إظهار زر إعادة الحل
+
+        document.getElementById("restartButton").style.display =
+            "block";
+
+    }
+
+
+    // قفل الامتحان
+
+    function lockQuiz() {
+
+        let inputs =
+            document.querySelectorAll(
+                'input[type="radio"]'
+            );
+
+
+        inputs.forEach(function(input) {
+
+            input.disabled = true;
+
+        });
+
+    }
+
+
+    // عرض النتيجة إذا فتح الطالب الصفحة مرة أخرى
+
+    function showSubmittedResult() {
+
+        let score =
+            localStorage.getItem("examScore");
+
+
+        document.getElementById("result").innerHTML =
+            "🎉 نتيجتك: " +
+            score +
+            " من 5";
+
+
+        lockQuiz();
+
+
+        document.getElementById("submitButton").disabled = true;
+
+
+        document.getElementById("restartButton").style.display =
+            "block";
+
+    }
+
+
+    // إعادة حل الامتحان
+
+    function restartQuiz() {
+
+        // حذف النتيجة القديمة
+
+        localStorage.removeItem("examSubmitted");
+
+        localStorage.removeItem("examScore");
+
+
+        // إزالة كل الاختيارات
+
+        let inputs =
+            document.querySelectorAll(
+                'input[type="radio"]'
+            );
+
+
+        inputs.forEach(function(input) {
+
+            input.disabled = false;
+
+            input.checked = false;
+
+        });
+
+
+        // إخفاء النتيجة
+
+        document.getElementById("result").innerHTML = "";
+
+
+        // تشغيل زر الحساب
+
+        document.getElementById("submitButton").disabled = false;
+
+
+        // إخفاء زر إعادة الحل
+
+        document.getElementById("restartButton").style.display =
+            "none";
+
+
+        // يرجع الطالب لبداية الصفحة
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
