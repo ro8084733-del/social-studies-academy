@@ -62,6 +62,10 @@
             background: #1976D2;
         }
 
+        .reset {
+            background: #00BCD4;
+        }
+
         .logout {
             background: #e53935;
         }
@@ -132,7 +136,6 @@
         ⏳ جاري تشغيل الصفحة...
     </div>
 
-
     <!-- تسجيل الدخول -->
 
     <div class="box" id="loginBox">
@@ -154,10 +157,13 @@
             🔑 تسجيل الدخول
         </button>
 
+        <button type="button" id="resetPasswordButton" class="reset">
+            🔑 نسيت كلمة المرور؟
+        </button>
+
         <div id="loginMessage"></div>
 
     </div>
-
 
     <!-- لوحة المديرة -->
 
@@ -176,7 +182,6 @@
             </button>
 
         </div>
-
 
         <!-- إضافة طالب -->
 
@@ -223,7 +228,6 @@
 
         </div>
 
-
         <!-- قائمة الطلاب -->
 
         <div class="box">
@@ -246,9 +250,7 @@
 
                     </thead>
 
-                    <tbody id="studentsTable">
-
-                    </tbody>
+                    <tbody id="studentsTable"></tbody>
 
                 </table>
 
@@ -260,26 +262,21 @@
 
 </div>
 
-
 <script type="module">
 
-    // اختبار الصفحة
-    document.getElementById("status").textContent =
-        "✅ الصفحة تعمل";
+    // =========================
+    // Firebase
+    // =========================
 
-
-    // استيراد Firebase
     import { auth, db }
     from "./firebase-config.js";
 
-
     import {
         signInWithEmailAndPassword,
-        onAuthStateChanged,
-        signOut
+        signOut,
+        sendPasswordResetEmail
     }
     from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 
     import {
         collection,
@@ -406,6 +403,84 @@
 
                     loginMessage.textContent =
                         "❌ حدث خطأ في تسجيل الدخول";
+
+                }
+
+            }
+
+        });
+
+
+    // =========================
+    // نسيت كلمة المرور
+    // =========================
+
+    document
+        .getElementById("resetPasswordButton")
+        .addEventListener("click", async function () {
+
+            const email =
+                document.getElementById("email").value.trim();
+
+
+            if (email === "") {
+
+                loginMessage.textContent =
+                    "⚠️ اكتبي البريد الإلكتروني أولاً";
+
+                loginMessage.style.color = "red";
+
+                return;
+            }
+
+
+            loginMessage.textContent =
+                "⏳ جاري إرسال رابط إعادة تعيين كلمة المرور...";
+
+            loginMessage.style.color = "#2196F3";
+
+
+            try {
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                loginMessage.textContent =
+                    "✅ تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني";
+
+                loginMessage.style.color = "green";
+
+
+            } catch (error) {
+
+                console.log(error);
+
+                loginMessage.style.color = "red";
+
+
+                if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    loginMessage.textContent =
+                        "❌ هذا البريد غير مسجل";
+
+                } else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    loginMessage.textContent =
+                        "❌ البريد الإلكتروني غير صحيح";
+
+                } else {
+
+                    loginMessage.textContent =
+                        "❌ لم يتم إرسال الرابط، حاولي مرة أخرى";
 
                 }
 
